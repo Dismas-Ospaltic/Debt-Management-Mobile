@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#8B0000</color>
+
+
+    <color name="gray01">#c5c5c5</color>
+    <color name="light_bg_color">#f2f3f5</color>
+    <color name="border_color">#e5e8ec</color>
+    <color name="royal_blue">#4169E1</color>
+    <color name="main_color">#3C56E6</color>
+    <color name="cooler">#6ea1e9</color>
+    <color name="dark">#1D2231</color>
+    <color name="text_gray">#8390A2</color>
+    <color name="green">#27ae60</color>
+    <color name="light_green">#7AE47E</color>
+    <color name="transparent_dark">#1D223180</color>
+    <color name="orange">#F1410A</color>
+    <color name="pink">#F60897</color>
+    <color name="pink1">#EEDD1081</color>
+    <color name="Active">#95D4F1</color>
+    <color name="indigo">#4B0082</color>
+    <color name="indigo_translucent">#804B0082</color>
+    <color name="colorful">#07ABF4</color>
+    <color name="wheat">#FBEFCA</color>
+    <color name="orangeDeep">#F31707</color>
+    <color name="damnOrange">#FA9A0D</color>
+
+    <color name="darkLight">#1F2937</color>
+    <color name="shadeBlue">#4285F4</color>
+
+
+    <color name="tabBackground">#EEEEEE</color>
+    <color name="tabSelected">#1D2231</color>
+    <color name="tabUnselected">#f2f3f5</color>
+
+    <color name="bottom_bar_background">#FFFFFFFF</color>
+    <color name="tab_selected">#1D2231</color>
+    <color name="tab_unselected">#B0BEC5</color>
+    <color name="tab_indicator">#f2f3f5</color>
+
+
+    <color name="payNowButton">#0084FF</color>
+    <color name="viewHistoryButton">#FF9800</color>
+
+</resources>
