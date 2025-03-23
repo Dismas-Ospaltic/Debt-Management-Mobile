@@ -44,6 +44,7 @@ color white
 drawable add_white
 drawable baseline_add_home_24
 drawable burden
+drawable calendar_icon
 drawable debt
 drawable ic_analytics
 drawable ic_arror_right_gray

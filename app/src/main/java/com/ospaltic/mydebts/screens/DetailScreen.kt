@@ -35,6 +35,8 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import com.ospaltic.mydebts.R  // Importing resources
 import com.ospaltic.mydebts.model.PaymentItem
+import com.ospaltic.mydebts.navigation.Screen
+import com.ospaltic.mydebts.screens.components.AddDebtPopUpScreen
 import com.ospaltic.mydebts.screens.components.PayAllPopupScreen
 import com.ospaltic.mydebts.screens.components.PaymentBox
 import com.ospaltic.mydebts.screens.components.PaymentPopupScreen
@@ -61,7 +63,7 @@ fun DetailScreen(navController: NavController, itemId: String?) {
     val textColor = colorResource(id = R.color.white) // Text color
 
     var showDialog by remember { mutableStateOf(false) } // State to control popup visibility
-
+    var showAddDebtDialog by remember { mutableStateOf(false) } // State to control popup visibility
 
 
     val paymentItems = listOf(
@@ -80,8 +82,9 @@ fun DetailScreen(navController: NavController, itemId: String?) {
     )
 
     val buttons = listOf(
+        ButtonItem("Add Debt", R.drawable.ic_money) { showAddDebtDialog = true },
         ButtonItem("Pay All", R.drawable.ic_money) { showDialog = true  },
-        ButtonItem("Show History", R.drawable.ic_clipboard) { },
+        ButtonItem("Show History", R.drawable.ic_clipboard) { navController.navigate(Screen.DebtHistDetail.createRoute(itemId.toString())) },
     )
     val columns = if (LocalConfiguration.current.screenWidthDp < 600) 2 else 3 // Responsive grid
 
@@ -316,6 +319,12 @@ fun DetailScreen(navController: NavController, itemId: String?) {
     // Show the Payment Popup if showDialog is true
     if (showDialog) {
         PayAllPopupScreen(onDismiss = { showDialog = false }, 200f)
+
+    }
+
+    // Show the Payment Popup if showDialog is true
+    if (showAddDebtDialog) {
+        AddDebtPopUpScreen(onDismiss = { showAddDebtDialog = false })
 
     }
     }

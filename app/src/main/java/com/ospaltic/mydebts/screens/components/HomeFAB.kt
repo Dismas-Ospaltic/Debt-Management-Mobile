@@ -16,10 +16,17 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.navigation.compose.rememberNavController
 import com.ospaltic.mydebts.R
+import com.ospaltic.mydebts.model.PeopleEntity
 import com.ospaltic.mydebts.screens.HomeScreen
+import com.ospaltic.mydebts.utils.formatDate
+import com.ospaltic.mydebts.viewmodel.PeopleViewModel
+import org.koin.androidx.compose.koinViewModel
+import java.security.MessageDigest
+import java.security.SecureRandom
+import java.util.UUID
 
 @Composable
-fun HomeFAB() {
+fun HomeFAB(peopleViewModel: PeopleViewModel = koinViewModel()) {
     var showDialog by remember { mutableStateOf(false) }
 
     // State variables for input fields
@@ -35,6 +42,10 @@ fun HomeFAB() {
     var lastNameError by remember { mutableStateOf(false) }
     var emailError by remember { mutableStateOf(false) }
     var phoneError by remember { mutableStateOf(false) }
+
+
+    val currentDate = remember { System.currentTimeMillis() }
+    val formattedDate = formatDate(currentDate)
 
     // Custom colors from res
     val primaryColor = colorResource(id = R.color.teal_700)
@@ -124,8 +135,10 @@ fun HomeFAB() {
                 TextButton(
                     onClick = {
                         if (validateInputs()) {
-                            showDialog = false
                             // Handle saving the data here
+//                            noteViewModel.insert(NoteEntity(title = title, noteId= generateUniqueId(), content = content))
+                        peopleViewModel.insert(PeopleEntity(uid = generateUniqueUserId(), firstName = firstName, lastName = lastName, email = email, phone = phone, businessName = businessName, address = address, date = formattedDate))
+                            showDialog = false
                         }
                     }
                 ) {
@@ -158,6 +171,24 @@ fun HomeFAB() {
 @Composable
 fun HomeFABPreview() {
     HomeFAB()
+}
+
+
+fun generateUniqueId(): String {
+    return UUID.randomUUID().toString()
+}
+
+fun generateUniqueUserId(): String {
+    val random = SecureRandom()
+    val bytes = ByteArray(16)
+    random.nextBytes(bytes)
+
+    val md = MessageDigest.getInstance("SHA-256")
+    val hash = md.digest(bytes)
+
+    return hash.joinToString("") { "%02x".format(it) }
+        .chunked(8)
+        .joinToString("-")
 }
 
 

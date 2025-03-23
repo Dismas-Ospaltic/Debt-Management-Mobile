@@ -2990,6 +2990,7 @@ int drawable btn_radio_off_to_on_mtrl_animation 0x7f070081
 int drawable btn_radio_on_mtrl 0x7f070082
 int drawable btn_radio_on_to_off_mtrl_animation 0x7f070083
 int drawable burden 0x7f070084
+int drawable calendar_icon 0x7f0700f8
 int drawable debt 0x7f070085
 int drawable design_fab_background 0x7f070086
 int drawable design_ic_visibility 0x7f070087

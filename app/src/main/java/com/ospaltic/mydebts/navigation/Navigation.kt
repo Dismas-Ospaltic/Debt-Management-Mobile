@@ -7,6 +7,7 @@ import com.google.accompanist.navigation.animation.composable
 import androidx.compose.animation.*
 import androidx.compose.ui.Modifier
 import com.ospaltic.mydebts.screens.AccountScreen
+import com.ospaltic.mydebts.screens.DebtHistoryScreen
 import com.ospaltic.mydebts.screens.HomeScreen
 import com.ospaltic.mydebts.screens.DetailScreen
 import com.ospaltic.mydebts.screens.PayHistoryScreen
@@ -19,6 +20,9 @@ sealed class Screen(val route: String) {
     }
     object HistDetail : Screen("history/{itemId}") {
         fun createRoute(itemId: String) = "history/$itemId"
+    }
+    object DebtHistDetail : Screen("debt_history/{itemId}") {
+        fun createRoute(itemId: String) = "debt_history/$itemId"
     }
 }
 
@@ -43,6 +47,11 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
             val itemId = backStackEntry.arguments?.getString("itemId") ?: "Unknown"
             PayHistoryScreen(navController, itemId)
         }
+        composable(Screen.DebtHistDetail.route) { backStackEntry ->
+            val itemId = backStackEntry.arguments?.getString("itemId") ?: "Unknown"
+            DebtHistoryScreen(navController, itemId)
+        }
+
 
     }
 }
