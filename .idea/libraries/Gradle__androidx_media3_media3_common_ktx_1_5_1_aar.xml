@@ -5,6 +5,8 @@
       <root url="file://$USER_HOME$/.gradle/caches/8.9/transforms/5ec8cf79bd759c3754dd7b39a03cfb52/transformed/media3-common-ktx-1.5.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.media3/media3-common-ktx/1.5.1/d707452d222fe06d37e5aced0b58ea34f488dc9c/media3-common-ktx-1.5.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

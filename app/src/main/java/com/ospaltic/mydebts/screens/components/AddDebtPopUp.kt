@@ -1,128 +1,10 @@
 package com.ospaltic.mydebts.screens.components
 
 
-//import android.icu.text.SimpleDateFormat
-//import android.icu.util.Calendar
-//import androidx.compose.foundation.layout.*
-//import androidx.compose.foundation.text.KeyboardOptions
-//import androidx.compose.material.icons.Icons
-//import androidx.compose.material3.*
-//import androidx.compose.runtime.*
-//import androidx.compose.ui.Modifier
-//import androidx.compose.ui.graphics.Color
-//import androidx.compose.ui.res.colorResource
-//import androidx.compose.ui.text.input.KeyboardType
-//import androidx.compose.ui.tooling.preview.Preview
-//import androidx.compose.ui.unit.dp
-//import androidx.compose.ui.platform.LocalContext
-//import androidx.compose.ui.res.painterResource
-//import androidx.compose.ui.text.input.TextFieldValue
-//import com.ospaltic.mydebts.R
-//import java.util.Locale
-//
-//
-////AddDebtPopUp
-//
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun AddDebtPopUpScreen(onDismiss: () -> Unit) {
-//    var amount by remember { mutableStateOf("") }
-//    var description by remember { mutableStateOf("") }
-//    var date by remember { mutableStateOf("") }
-//    var showDatePicker by remember { mutableStateOf(false) }
-//
-//    val context = LocalContext.current
-//    val dateFormat = remember { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
-//    val calendar = remember { Calendar.getInstance() }
-//
-//    if (showDatePicker) {
-//        DatePickerDialog(
-//            onDismissRequest = { showDatePicker = false },
-//            confirmButton = {
-//                TextButton(onClick = { showDatePicker = false }) {
-//                    Text("OK")
-//                }
-//            }
-//        ) {
-//            DatePicker(
-//                state = rememberDatePickerState(
-//                    initialSelectedDateMillis = calendar.timeInMillis
-//                ),
-//                onDateSelected = { selectedMillis ->
-//                    selectedMillis?.let {
-//                        calendar.timeInMillis = it
-//                        date = dateFormat.format(calendar.time) // Update selected date
-//                    }
-//                    showDatePicker = false
-//                }
-//            )
-//        }
-//    }
-//
-//    AlertDialog(
-//        onDismissRequest = { onDismiss() },
-//        title = { Text(text = "Add Debt") },
-//        text = {
-//            Column {
-//                // Amount (User Input)
-//                TextField(
-//                    value = amount,
-//                    onValueChange = { newValue ->
-//                        if (newValue.all { it.isDigit() || it == '.' }) {
-//                            amount = newValue
-//                        }
-//                    },
-//                    label = { Text("Amount to Pay") },
-//                    modifier = Modifier.fillMaxWidth(),
-//                    singleLine = true,
-//                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-//                )
-//
-//                Spacer(modifier = Modifier.height(8.dp))
-//
-//                // Description
-//                TextField(
-//                    value = description,
-//                    onValueChange = { description = it },
-//                    label = { Text("Description") },
-//                    modifier = Modifier.fillMaxWidth(),
-//                    singleLine = true
-//                )
-//
-//                Spacer(modifier = Modifier.height(8.dp))
-//
-//                // Due Date Picker
-//                TextField(
-//                    value = date,
-//                    onValueChange = {},
-//                    label = { Text("Due Date") },
-//                    modifier = Modifier.fillMaxWidth(),
-//                    singleLine = true,
-//                    readOnly = true,
-//                    trailingIcon = {
-//                        IconButton(onClick = { showDatePicker = true }) {
-//                            Icon(imageVector = Icons.Default.CalendarToday, contentDescription = "Pick Date")
-//                        }
-//                    }
-//                )
-//            }
-//        },
-//        confirmButton = {
-//            TextButton(onClick = { /* Handle submission */ }) {
-//                Text("Add", color = colorResource(R.color.green))
-//            }
-//        },
-//        dismissButton = {
-//            TextButton(onClick = { onDismiss() }) {
-//                Text("Cancel", color = colorResource(R.color.red))
-//            }
-//        }
-//    )
-//}
-
 import android.app.DatePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -133,14 +15,40 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ospaltic.mydebts.R
+import com.ospaltic.mydebts.model.DebtEntity
+import com.ospaltic.mydebts.utils.formatDate
+import com.ospaltic.mydebts.viewmodel.DebtViewModel
+import org.koin.androidx.compose.koinViewModel
 import java.util.Locale
+import java.util.UUID
 
 @Composable
-fun AddDebtPopUpScreen(onDismiss: () -> Unit) {
+fun AddDebtPopUpScreen(itemId: String?, onDismiss: () -> Unit) {
     var amount by remember { mutableStateOf("") }
     var date by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
+
+    val debtViewModel: DebtViewModel = koinViewModel()
+    val currentDate = remember { System.currentTimeMillis() }
+    val formattedDate = formatDate(currentDate)
+
+    val errorColor = colorResource(id = R.color.red)
+
+    // Validation errors
+    var amountError by remember { mutableStateOf(false) }
+    var dateError by remember { mutableStateOf(false) }
+    var descriptionError by remember { mutableStateOf(false) }
+
+
+    fun validateInputs(): Boolean {
+        amountError = amount.isBlank()
+        dateError = date.isBlank()
+        descriptionError = description.isBlank()
+
+        return !(amountError || dateError || descriptionError)
+    }
 
     val context = LocalContext.current
     val calendar = Calendar.getInstance()
@@ -173,11 +81,14 @@ fun AddDebtPopUpScreen(onDismiss: () -> Unit) {
                             amount = newValue
                         }
                     },
-                    label = { Text("Amount to Pay") },
+                    label = { Text("Amount") },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
+                if (amountError) {
+                    Text("Amount is required", color = errorColor, fontSize = 12.sp)
+                }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -186,9 +97,11 @@ fun AddDebtPopUpScreen(onDismiss: () -> Unit) {
                     value = description,
                     onValueChange = { description = it },
                     label = { Text("Description") },
-                    modifier = Modifier.fillMaxWidth(),
-                    singleLine = true
+                    modifier = Modifier.fillMaxWidth()
                 )
+                if (amountError) {
+                    Text("Description is required", color = errorColor, fontSize = 12.sp)
+                }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -209,10 +122,34 @@ fun AddDebtPopUpScreen(onDismiss: () -> Unit) {
                         }
                     }
                 )
+                if (amountError) {
+                    Text("Due date is required", color = errorColor, fontSize = 12.sp)
+                }
             }
         },
         confirmButton = {
-            TextButton(onClick = { /* Handle saving debt */ }) {
+            TextButton(onClick = {
+
+                if (itemId.isNullOrBlank()) {
+                    Toast.makeText(context, "Error: Invalid user ID", Toast.LENGTH_SHORT).show()
+                    return@TextButton
+                }
+            /* Handle saving debt */
+                if (validateInputs()) {
+                debtViewModel.insertDebt(
+                   DebtEntity(
+                       date = formattedDate,
+                       debtId = generateUniqueId(),
+                       uid = itemId,
+                       amount = amount.toFloat(),
+                       description = description,
+                       status = "pending",
+                       dueDate = date
+                   )
+                )
+                onDismiss()
+                }
+            }) {
                 Text("Add", color = colorResource(R.color.green))
             }
         },
@@ -222,4 +159,8 @@ fun AddDebtPopUpScreen(onDismiss: () -> Unit) {
             }
         }
     )
+}
+
+fun generateUniqueId(): String {
+    return UUID.randomUUID().toString()
 }

@@ -1,0 +1,34 @@
+package com.ospaltic.mydebts.repository
+
+import com.ospaltic.mydebts.data.local.DebtDao
+import com.ospaltic.mydebts.model.DebtEntity
+import com.ospaltic.mydebts.model.PeopleEntity
+import kotlinx.coroutines.flow.Flow
+
+class DebtRepository(private val debtDao: DebtDao) {
+
+//    val allDebt: Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
+    fun getAllDebt(userId: String): Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
+
+    suspend fun insert(debt: DebtEntity) {
+        debtDao.insertDebt(debt)
+    }
+
+    suspend fun update(debt: DebtEntity) {
+        debtDao.updateDebt(debt)
+    }
+
+
+
+    suspend fun updateDebtStatus(debtId: String, newStatus: String): Boolean {
+        val rowsUpdated = debtDao.updateDebtStatus(debtId, newStatus) ?: 0
+        return rowsUpdated > 0
+    }
+
+
+    suspend fun getDebtById(debtId: String): DebtEntity? {
+        return debtDao.getDebtById(debtId)
+    }
+
+}
+

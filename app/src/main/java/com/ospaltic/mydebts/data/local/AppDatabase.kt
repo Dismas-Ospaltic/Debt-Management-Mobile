@@ -5,12 +5,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PeopleEntity
 
-@Database(entities = [PeopleEntity::class], version = 1, exportSchema = false)
+@Database(entities = [PeopleEntity::class, DebtEntity::class], version = 2, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun peopleDao(): PeopleDao
+    abstract fun debtDao(): DebtDao
 
     companion object {
         @Volatile

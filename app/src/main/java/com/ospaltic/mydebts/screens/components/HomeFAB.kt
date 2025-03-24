@@ -174,9 +174,9 @@ fun HomeFABPreview() {
 }
 
 
-fun generateUniqueId(): String {
-    return UUID.randomUUID().toString()
-}
+//fun generateUniqueId(): String {
+//    return UUID.randomUUID().toString()
+//}
 
 fun generateUniqueUserId(): String {
     val random = SecureRandom()

@@ -34,6 +34,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 import com.ospaltic.mydebts.R  // Importing resources
+import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PaymentItem
 import com.ospaltic.mydebts.navigation.Screen
 import com.ospaltic.mydebts.screens.components.AddDebtPopUpScreen
@@ -41,19 +42,40 @@ import com.ospaltic.mydebts.screens.components.PayAllPopupScreen
 import com.ospaltic.mydebts.screens.components.PaymentBox
 import com.ospaltic.mydebts.screens.components.PaymentPopupScreen
 import com.ospaltic.mydebts.utils.DynamicStatusBar
-
-
+import com.ospaltic.mydebts.viewmodel.DebtViewModel
+import com.ospaltic.mydebts.viewmodel.PeopleViewModel
+import org.koin.androidx.compose.koinViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavController, itemId: String?) {
+fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: PeopleViewModel = koinViewModel()) {
 
     val backgroundColor = colorResource(id = R.color.dark)
 
     DynamicStatusBar(backgroundColor)  // ✅ Apply dynamic status bar settings
 
-    val tabs = listOf("All", "Pending", "Complete", "Sold", "Partial", "Minimum")
+
+    // Fetch user details if itemId is not null
+    LaunchedEffect(itemId) {
+        itemId?.let { peopleViewModel.getPersonDetails(it) }
+    }
+
+
+    val debtViewModel: DebtViewModel = koinViewModel()
+    val debts by debtViewModel.debts.collectAsState()
+
+    LaunchedEffect(Unit) {
+        if (itemId != null) {
+            debtViewModel.getAllDebts(userId = itemId.toString())
+        }  // Pass actual userId
+    }
+
+    // Observe the person state
+    val person = peopleViewModel.personState.collectAsState().value
+
+
+    val tabs = listOf("All", "Pending", "Partial", "Paid")
     val pagerState = rememberPagerState(pageCount = { tabs.size })
     val coroutineScope = rememberCoroutineScope()
     val interactionSource = remember { MutableInteractionSource() }
@@ -66,20 +88,44 @@ fun DetailScreen(navController: NavController, itemId: String?) {
     var showAddDebtDialog by remember { mutableStateOf(false) } // State to control popup visibility
 
 
-    val paymentItems = listOf(
-        PaymentItem("2025-03-10", "2025-04-10", "120.00", "120.00", "Paid"),
-        PaymentItem("2025-03-05", "2025-04-05", "80.00", "20.00", "Partial"),
-        PaymentItem("2025-02-28", "2025-03-28", "150.00", "50.00", "Minimum"),
-        PaymentItem("2025-03-10", "2025-04-10", "120.00", "120.00", "Paid"),
-        PaymentItem("2025-03-05", "2025-04-05", "80.00", "20.00", "Partial"),
-        PaymentItem("2025-02-28", "2025-03-28", "150.00", "50.00", "Minimum"),
-        PaymentItem("2025-03-10", "2025-04-10", "120.00", "120.00", "Paid"),
-        PaymentItem("2025-03-05", "2025-04-05", "80.00", "20.00", "Partial"),
-        PaymentItem("2025-02-28", "2025-03-28", "150.00", "50.00", "Minimum"),
-        PaymentItem("2025-03-10", "2025-04-10", "120.00", "120.00", "Paid"),
-        PaymentItem("2025-03-05", "2025-04-05", "80.00", "20.00", "Partial"),
-        PaymentItem("2025-02-28", "2025-03-28", "150.00", "50.00", "Minimum")
-    )
+//    val paymentItems = listOf(
+//        PaymentItem("2025-03-10", "2025-04-10", "120.00", "120.00", "Paid"),
+//        PaymentItem("2025-03-05", "2025-04-05", "80.00", "20.00", "Partial"),
+//
+//    )
+
+
+//    val paymentItems = debts.map { debt ->
+//        DebtEntity(
+//            date = debt.date,
+//            dueDate = debt.dueDate,
+//            amount = debt.amount,
+//            debtId = debt.debtId,
+//            description = debt.description,
+//            uid = debt.uid,
+//            timestamp = debt.timestamp,
+//            status = debt.status
+//        )
+//    }
+
+
+    val paymentItems by remember {
+        derivedStateOf {
+            debts.map { debt ->
+                DebtEntity(
+                    date = debt.date,
+                    dueDate = debt.dueDate,
+                    amount = debt.amount,
+                    debtId = debt.debtId,
+                    description = debt.description,
+                    uid = debt.uid,
+                    timestamp = debt.timestamp,
+                    status = debt.status
+                )
+            }
+        }
+    }
+
 
     val buttons = listOf(
         ButtonItem("Add Debt", R.drawable.ic_money) { showAddDebtDialog = true },
@@ -91,7 +137,7 @@ fun DetailScreen(navController: NavController, itemId: String?) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Details - Item $itemId", color = Color.White) },
+                title = { Text("Client Details", color = Color.White) }, // - Item $itemId
                 navigationIcon = {
                     IconButton(
                         onClick = { navController.popBackStack() },
@@ -161,32 +207,40 @@ fun DetailScreen(navController: NavController, itemId: String?) {
                         .padding(16.dp)
                         .align(Alignment.BottomStart)
                 ) {
+                    if(person != null){
                     Text(
-                        "Dane Doe",
+                        text =person.firstName + " " + person.lastName,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
                     Text(
-                        "jane@gmail.com",
+                        text = person.email,
                         fontSize = 16.sp,
                         color = Color.White.copy(alpha = 0.8f)
                     )
                     Text(
-                        "+254742354784",
+                        text = person.phone,
                         fontSize = 16.sp,
                         color = Color.White.copy(alpha = 0.8f)
                     )
                     Text(
-                        "Jshoes Ltd",
+                        text = person.address.takeIf { it.isNotBlank() } ?: "Not set",
                         fontSize = 16.sp,
                         color = Color.White.copy(alpha = 0.8f)
                     )
                     Text(
-                        "Nairobi",
+                        text = person.businessName.takeIf { it.isNotBlank() } ?: "Not set",
                         fontSize = 16.sp,
                         color = Color.White.copy(alpha = 0.8f)
                     )
+                    }else{
+                        // Show a loading indicator or message if data is null
+                        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                            Text(text = "Loading user details...", color = Color.Gray, fontSize = 16.sp)
+                        }
+                    }
+
                 }
             }
 
@@ -276,11 +330,9 @@ fun DetailScreen(navController: NavController, itemId: String?) {
                     HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page ->
                         val filteredItems = when (page) {
                             0 -> paymentItems // "All" tab shows all payments
-                            1 -> paymentItems.filter { it.status == "Pending" }
-                            2 -> paymentItems.filter { it.status == "Paid" }
-                            3 -> paymentItems.filter { it.status == "Sold" }
-                            4 -> paymentItems.filter { it.status == "Partial" }
-                            5 -> paymentItems.filter { it.status == "Minimum" }
+                            1 -> paymentItems.filter { it.status.equals("Pending", ignoreCase = true)}
+                            2 -> paymentItems.filter { it.status.equals("Partial", ignoreCase = true)}
+                            3 -> paymentItems.filter { it.status.equals("Paid", ignoreCase = true) }
                             else -> emptyList()
                         }
 
@@ -304,7 +356,7 @@ fun DetailScreen(navController: NavController, itemId: String?) {
                             }
                         } else {
                             filteredItems.forEach { item ->
-                                PaymentBox(navController = navController, payment = item) // Display each payment dynamically
+                                PaymentBox(navController = navController, debt = item) // Display each payment dynamically
                             }
 
                         }
@@ -324,8 +376,8 @@ fun DetailScreen(navController: NavController, itemId: String?) {
 
     // Show the Payment Popup if showDialog is true
     if (showAddDebtDialog) {
-        AddDebtPopUpScreen(onDismiss = { showAddDebtDialog = false })
-
+//        AddDebtPopUpScreen(onDismiss = { showAddDebtDialog = false })
+        AddDebtPopUpScreen(itemId = itemId) { showAddDebtDialog = false }
     }
     }
 

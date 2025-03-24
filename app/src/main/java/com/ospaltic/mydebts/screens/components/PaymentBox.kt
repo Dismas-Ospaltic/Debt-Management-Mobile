@@ -28,71 +28,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ospaltic.mydebts.R
+import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PaymentItem
 import com.ospaltic.mydebts.navigation.Screen
 
 
-//@Composable
-//fun PaymentBox(navController: NavController, payment: PaymentItem) {
-//
-//    Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(8.dp)
-//            .clickable { },
-//        shape = RoundedCornerShape(12.dp),
-//        colors = CardDefaults.cardColors(containerColor = Color.White)
-//    ) {
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(16.dp),
-//            verticalAlignment = Alignment.CenterVertically
-//        ) {
-//            // Left Section: 80% of the width
-//            Column(
-//                modifier = Modifier
-//                    .weight(0.5f) // Takes 80% of the row width
-//                    .padding(end = 8.dp) // Adds some space before buttons
-//            ) {
-//                Text("Date: ${payment.date}", color = Color.Black, fontSize = 16.sp)
-//                Text("Due Date: ${payment.dueDate}", color = Color.Black, fontSize = 16.sp)
-//                Text("Amount: ${payment.amount}", color = Color.Black, fontSize = 16.sp)
-//                Text("Paid: ${payment.paid}", color = Color.Green, fontSize = 16.sp)
-//            }
-//
-//            // Right Section (Buttons): 20% of the width
-//            Column(
-//                verticalArrangement = Arrangement.spacedBy(8.dp),
-//                horizontalAlignment = Alignment.CenterHorizontally,
-//                modifier = Modifier.weight(0.5f) // Takes 20% of the row width
-//            ) {
-//                Button(
-//                    onClick = { /* Handle Pay Now */PaymentPopupScreen()   },
-//                    colors = ButtonDefaults.buttonColors(
-//                        containerColor = colorResource(id = R.color.payNowButton)
-//                    ),
-//                    modifier = Modifier.fillMaxWidth()
-//                ) {
-//                    Text("Pay Now", color = Color.White)
-//                }
-//
-//                Button(
-//                    onClick = {  navController.navigate(Screen.HistDetail.createRoute(payment.date))/* Handle View History */ },
-//                    colors = ButtonDefaults.buttonColors(
-//                        containerColor = colorResource(id = R.color.dark)
-//                    ),
-//                    modifier = Modifier.fillMaxWidth()
-//                ) {
-//                    Text("View History", color = Color.White)
-//                }
-//            }
-//        }
-//    }
-//}
-
 @Composable
-fun PaymentBox(navController: NavController, payment: PaymentItem) {
+fun PaymentBox(navController: NavController, debt: DebtEntity) {
     var showDialog by remember { mutableStateOf(false) } // State to control popup visibility
 
     Card(
@@ -115,10 +57,10 @@ fun PaymentBox(navController: NavController, payment: PaymentItem) {
                     .weight(0.5f)
                     .padding(end = 8.dp)
             ) {
-                Text("Date: ${payment.date}", color = Color.Black, fontSize = 16.sp)
-                Text("Due Date: ${payment.dueDate}", color = Color.Black, fontSize = 16.sp)
-                Text("Amount: ${payment.amount}", color = Color.Black, fontSize = 16.sp)
-                Text("Paid: ${payment.paid}", color = Color.Green, fontSize = 16.sp)
+                Text("Date: ${debt.date}", color = Color.Black, fontSize = 16.sp)
+                Text("Due Date: ${debt.dueDate}", color = Color.Black, fontSize = 16.sp)
+                Text("Amount: ${debt.amount}", color = Color.Black, fontSize = 16.sp)
+//                Text("Paid: ${payment.paid}", color = Color.Green, fontSize = 16.sp)
             }
 
             // Right Section (Buttons)
@@ -127,18 +69,21 @@ fun PaymentBox(navController: NavController, payment: PaymentItem) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.weight(0.5f)
             ) {
-                Button(
-                    onClick = { showDialog = true }, // Show popup when clicked
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = colorResource(id = R.color.payNowButton)
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text("Pay Now", color = Color.White)
+                // Show "Pay Now" button only if status is NOT "Paid"
+                if (!debt.status.equals("Paid", ignoreCase = true)) {
+                    Button(
+                        onClick = { showDialog = true }, // Show popup when clicked
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = colorResource(id = R.color.payNowButton)
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Pay Now", color = Color.White)
+                    }
                 }
 
                 Button(
-                    onClick = { navController.navigate(Screen.HistDetail.createRoute(payment.date)) },
+                    onClick = { navController.navigate(Screen.HistDetail.createRoute(debt.debtId)) },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(id = R.color.dark)
                     ),
@@ -146,13 +91,24 @@ fun PaymentBox(navController: NavController, payment: PaymentItem) {
                 ) {
                     Text("View History", color = Color.White)
                 }
+
+
+                Button(
+                    onClick = { },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = colorResource(id = R.color.teal_700)
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Details", color = Color.White)
+                }
             }
         }
     }
 
-    // Show the Payment Popup if showDialog is true
+     //Show the Payment Popup if showDialog is true
     if (showDialog) {
-        PaymentPopupScreen(onDismiss = { showDialog = false }, payment = payment)
+        PaymentPopupScreen(onDismiss = { showDialog = false }, debt=debt)
     }
 }
 
@@ -161,8 +117,8 @@ fun PaymentBox(navController: NavController, payment: PaymentItem) {
 fun PaymentBoxPreview() {
     val mockNavController = rememberNavController() // ✅ Correct way to create NavController in Compose
 
-    PaymentBox(
-        navController = mockNavController, // ✅ Pass the mock NavController
-        payment = PaymentItem("2025-03-10", "2025-04-10", "$120.00", "$120.00", "Paid")
-    )
+//    PaymentBox(
+//        navController = mockNavController, // ✅ Pass the mock NavController
+//        payment = DebtEntity("2025-03-10", "2025-04-10", "$120.00", "$120.00", "Paid")
+//    )
 }

@@ -24,17 +24,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ospaltic.mydebts.R
+import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PaymentItem
 
 
 
 @Composable
-fun PaymentPopupScreen(onDismiss: () -> Unit, payment: PaymentItem) {
+fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
     var amount by remember { mutableStateOf("") }
     var balance by remember { mutableFloatStateOf(0f) }
     var change by remember { mutableFloatStateOf(0f) }
 
-        val totalAmount by remember { mutableFloatStateOf(payment.amount.toFloatOrNull() ?: 0f) }
+        val totalAmount by remember { mutableFloatStateOf(debt.amount ?: 0f) }
     fun updateBalance(newAmount: String) {
         val amountFloat = newAmount.toFloatOrNull() ?: 0f
 
