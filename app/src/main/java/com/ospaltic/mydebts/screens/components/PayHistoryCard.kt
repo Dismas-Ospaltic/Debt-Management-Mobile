@@ -23,10 +23,11 @@ import androidx.compose.ui.unit.sp
 import com.ospaltic.mydebts.R
 import com.ospaltic.mydebts.model.HistoryItem
 import com.ospaltic.mydebts.model.PaymentItem
+import com.ospaltic.mydebts.model.RepayEntity
 
 
 @Composable
-fun PayHistoryCard(history: HistoryItem) {
+fun PayHistoryCard(history: RepayEntity) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -48,8 +49,8 @@ fun PayHistoryCard(history: HistoryItem) {
                     .padding(end = 8.dp) // Adds some space before buttons
             ) {
                 Text("Date: ${history.date}", color = Color.Black, fontSize = 16.sp)
-                Text("Paid: ${history.paid}", color = Color.Black, fontSize = 16.sp)
-                Text("Remaining: ${history.remaining}", color = Color.Black, fontSize = 16.sp)
+                Text("Paid: ${history.amountPaid}", color = Color.Black, fontSize = 16.sp)
+                Text("Remaining: ${history.amountRem}", color = Color.Black, fontSize = 16.sp)
             }
 
         }
@@ -57,10 +58,10 @@ fun PayHistoryCard(history: HistoryItem) {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun PayHistoryCardPreview() {
-    PayHistoryCard(
-        history = HistoryItem("2025-03-10", "$120.00", "$120.00")
-    )
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PayHistoryCardPreview() {
+//    PayHistoryCard(
+//        history = RepayEntity("2025-03-10", "$120.00", "$120.00")
+//    )
+//}

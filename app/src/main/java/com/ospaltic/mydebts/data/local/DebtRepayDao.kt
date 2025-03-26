@@ -19,13 +19,23 @@ interface DebtRepayDao {
     @Update
     suspend fun updateRepayDebt(repay: RepayEntity)
 
-//    @Query("UPDATE debt SET status = :status WHERE debtId = :debtId")
-//    suspend fun updateDebtStatus(debtId: String, status: String): Int?
 
     @Query("SELECT * FROM debt_history WHERE debtId = :debtId ORDER BY timestamp DESC")
     fun getDebtRepayById(debtId: String): Flow<List<RepayEntity>>
 
 
     @Query("SELECT * FROM debt_history WHERE uid = :userId ORDER BY timestamp DESC")
-    suspend fun getAllDebtHist(userId: String): Flow<List<RepayEntity>>
+    fun getAllDebtHist(userId: String): Flow<List<RepayEntity>>
+
+
+
+@Query("SELECT SUM(amountPaid) FROM debt_history WHERE debtId = :debtId")
+fun getAllTotalPaid(debtId: String): Flow<Float?>
+
+//    @Query("SELECT COALESCE(SUM(amountPaid), 0) FROM debt_history WHERE debtId = :debtId")
+//    suspend fun getTotalPaid(debtId: String): Float
+
+
+//    @Query("SELECT * FROM debt_history WHERE uid = :debtId")
+//    suspend fun getAllPayments(debtId: String): List<RepayEntity>
 }

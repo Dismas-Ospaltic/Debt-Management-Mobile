@@ -108,7 +108,9 @@ fun PaymentBox(navController: NavController, debt: DebtEntity) {
 
      //Show the Payment Popup if showDialog is true
     if (showDialog) {
+//        PaymentPopupScreen(itemId = itemId, debt=debt) { showAddDebtDialog = false }
         PaymentPopupScreen(onDismiss = { showDialog = false }, debt=debt)
+//        PaymentPopupScreen(itemId = debt.uid, onDismiss = {  showDialog = false } , debt=debt)
     }
 }
 

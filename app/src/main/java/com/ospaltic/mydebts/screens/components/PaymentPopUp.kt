@@ -1,5 +1,7 @@
 package com.ospaltic.mydebts.screens.components
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +13,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -18,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -26,24 +31,71 @@ import androidx.compose.ui.unit.sp
 import com.ospaltic.mydebts.R
 import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PaymentItem
-
-
+import com.ospaltic.mydebts.model.RepayEntity
+import com.ospaltic.mydebts.utils.formatDate
+import com.ospaltic.mydebts.viewmodel.DebtPayViewModel
+import com.ospaltic.mydebts.viewmodel.DebtViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
     var amount by remember { mutableStateOf("") }
     var balance by remember { mutableFloatStateOf(0f) }
     var change by remember { mutableFloatStateOf(0f) }
+    val debtPayViewModel: DebtPayViewModel = koinViewModel()
+    val currentDate = remember { System.currentTimeMillis() }
+    val formattedDate = formatDate(currentDate)
+    val debtViewModel: DebtViewModel = koinViewModel()
+    val context = LocalContext.current
+    val errorColor = colorResource(id = R.color.red)
+    var amountError by remember { mutableStateOf(false) }
+//    val totalAmount by remember { mutableFloatStateOf(debt.amount ?: 0f) }
+    var totalAmount by remember { mutableFloatStateOf(0f) }
+    val totalPaid by debtPayViewModel.totalPaid.collectAsState()
 
-        val totalAmount by remember { mutableFloatStateOf(debt.amount ?: 0f) }
+    val totalAmountCredit by remember { mutableFloatStateOf(debt.amount ?: 0f) }
+
+
+    LaunchedEffect(debt.debtId) {
+        debt.debtId.let { debtPayViewModel.fetchTotalPaid(it)
+            Log.d("UI", "Fetching total paid for: $it") // Debugging
+        }
+
+    }
+
+//    LaunchedEffect(debt.uid) {
+//        debtPayViewModel.fetchTotalPaid(debt.uid)
+//    }
+
+
+
+
+    totalAmount = if(totalPaid > 0f){
+        (totalAmountCredit - totalPaid).toFloat()
+    }else{
+        totalAmountCredit
+    }
+
+
+
+
+
+
+
+
+    
+    fun validateInputs(): Boolean {
+        amountError = amount.isBlank()
+        return !amountError
+    }
+
     fun updateBalance(newAmount: String) {
         val amountFloat = newAmount.toFloatOrNull() ?: 0f
-
         if (amountFloat >= totalAmount) {
             balance = 0f
-            change = amountFloat - totalAmount // Extra amount paid
+            change = amountFloat - totalAmount
         } else {
-            balance = totalAmount - amountFloat // Remaining balance (negative)
+            balance = totalAmount - amountFloat
             change = 0f
         }
     }
@@ -53,23 +105,17 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
         title = { Text(text = "Make Payment") },
         text = {
             Column {
-                // Debugging: Ensure payment.amount is correctly converted
-//                Log.d("PaymentPopupScreen", "Total Amount: $totalAmount") // Debug log
-
-                // Display Total Amount
                 Text(
-                    text = "Total Amount: ${"%.2f".format(totalAmount)}",
+                    text = "$totalPaid Total Amount: ${"%.2f".format(totalAmount)}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
-
-                // Amount (User Input)
                 TextField(
                     value = amount,
-                    onValueChange = { newValue ->
-                        if (newValue.toFloatOrNull() != null || newValue.isEmpty()) {
-                            amount = newValue
-                            updateBalance(newValue)
+                    onValueChange = {
+                        if (it.toFloatOrNull() != null || it.isEmpty()) {
+                            amount = it
+                            updateBalance(it)
                         }
                     },
                     label = { Text("Amount to Pay") },
@@ -77,10 +123,10 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
-
+                if (amountError) {
+                    Text("Amount is required", color = errorColor, fontSize = 12.sp)
+                }
                 Spacer(modifier = Modifier.height(8.dp))
-
-                // Balance (Read-Only)
                 TextField(
                     value = "%.2f".format(balance),
                     onValueChange = {},
@@ -92,10 +138,7 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
                         disabledContainerColor = Color.LightGray
                     )
                 )
-
                 Spacer(modifier = Modifier.height(8.dp))
-
-                // Change (Read-Only)
                 TextField(
                     value = "%.2f".format(change),
                     onValueChange = {},
@@ -110,7 +153,27 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
             }
         },
         confirmButton = {
-            TextButton(onClick = { /* Handle payment submission */ }) {
+            TextButton(onClick = {
+                if (validateInputs()) {
+                    val amountPaid = amount.toFloatOrNull() ?: 0f
+                    if (amountPaid <= 0f) return@TextButton
+                    val newBalance = totalAmount - amountPaid
+                    val newStatus = if (amountPaid >= totalAmount) "Paid" else "Partial"
+                    change = if (amountPaid > totalAmount) amountPaid - totalAmount else 0f
+                    debtPayViewModel.insertRepayment(
+                        RepayEntity(
+                            uid = debt.uid,
+                            amountPaid = amountPaid,
+                            amountRem = newBalance.coerceAtLeast(0f),
+                            date = formattedDate,
+                            debtId = debt.debtId
+                        )
+                    )
+                    debtViewModel.updateDebtStatus(debt.debtId, newStatus)
+//                    debtViewModel.updateDebt(debt.copy(status = newStatus))
+                    onDismiss()
+                }
+            }) {
                 Text("Pay", color = colorResource(R.color.green))
             }
         },

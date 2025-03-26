@@ -136,9 +136,10 @@ fun DebtHistoryScreen(navController: NavController, itemId: String?) {
                 }
             } else {
                 // ✅ Corrected Loop
-                historyItems.forEach { item ->
-                    PayHistoryCard(item) // ✅ Pass item, not HistoryItem class
-                }
+//                historyItems.forEach { item ->
+//                    PayHistoryCard(item) // ✅ Pass item, not HistoryItem class
+////                    PayHistoryCard(item = historyItems)
+//                }
 
 
             }
