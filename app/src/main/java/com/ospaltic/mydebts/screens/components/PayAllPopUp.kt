@@ -31,6 +31,10 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float) {
     var balance by remember { mutableFloatStateOf(0f) }
     var change by remember { mutableFloatStateOf(0f) }
 
+
+    val errorColor = colorResource(id = R.color.red)
+    var amountError by remember { mutableStateOf(false) }
+
     fun updateBalance(newAmount: String) {
         val amountFloat = newAmount.toFloatOrNull() ?: 0f
 
@@ -41,6 +45,12 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float) {
             balance = totalAmount - amountFloat // Remaining balance (negative)
             change = 0f
         }
+    }
+
+
+    fun validateInputs(): Boolean {
+        amountError = amount.isBlank()
+        return !amountError
     }
 
     AlertDialog(
@@ -70,6 +80,9 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float) {
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                 )
+                if (amountError) {
+                Text("Amount is required", color = errorColor, fontSize = 12.sp)
+            }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -103,7 +116,12 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float) {
             }
         },
         confirmButton = {
-            TextButton(onClick = { /* Handle payment submission */ }) {
+            TextButton(onClick = { /* Handle payment submission */
+                if (validateInputs()) {
+
+                    onDismiss()
+                }
+            }) {
                 Text("Pay", color = colorResource(R.color.green))
             }
         },

@@ -4,6 +4,7 @@ import com.ospaltic.mydebts.data.local.DebtDao
 import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PeopleEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class DebtRepository(private val debtDao: DebtDao) {
 
@@ -28,6 +29,11 @@ class DebtRepository(private val debtDao: DebtDao) {
 
     suspend fun getDebtById(debtId: String): DebtEntity? {
         return debtDao.getDebtById(debtId)
+    }
+
+    fun getTotalUnPaid(userId: String): Flow<Float> {
+        return debtDao.getAllUnpaidTotal(userId)
+            .map { total -> total ?: 0.0f }  // Convert NULL to 0.0
     }
 
 }

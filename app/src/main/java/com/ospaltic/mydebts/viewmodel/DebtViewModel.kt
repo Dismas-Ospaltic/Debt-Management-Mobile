@@ -1,5 +1,6 @@
 package com.ospaltic.mydebts.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ospaltic.mydebts.model.DebtEntity
@@ -71,4 +72,20 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
             _debtDetail.value = debtRepository.getDebtById(debtId)
         }
     }
+
+
+
+    private val _totalPaid = MutableStateFlow(0.0f)
+    val totalPaid: StateFlow<Float> = _totalPaid
+
+    fun fetchTotalUnpaidPaid(userId: String) {
+        viewModelScope.launch {
+            debtRepository.getTotalUnPaid(userId).collectLatest { total ->
+                Log.d("DebtViewModel", "Total unpaid Updated: $total") // Debugging
+                _totalPaid.value = total
+            }
+        }
+    }
+
+//
 }

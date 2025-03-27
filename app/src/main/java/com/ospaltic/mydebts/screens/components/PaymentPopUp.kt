@@ -46,6 +46,8 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
     val currentDate = remember { System.currentTimeMillis() }
     val formattedDate = formatDate(currentDate)
     val debtViewModel: DebtViewModel = koinViewModel()
+
+
     val context = LocalContext.current
     val errorColor = colorResource(id = R.color.red)
     var amountError by remember { mutableStateOf(false) }
@@ -63,12 +65,6 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
 
     }
 
-//    LaunchedEffect(debt.uid) {
-//        debtPayViewModel.fetchTotalPaid(debt.uid)
-//    }
-
-
-
 
     totalAmount = if(totalPaid > 0f){
         (totalAmountCredit - totalPaid).toFloat()
@@ -77,13 +73,6 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
     }
 
 
-
-
-
-
-
-
-    
     fun validateInputs(): Boolean {
         amountError = amount.isBlank()
         return !amountError
