@@ -1,7 +1,6 @@
 package com.ospaltic.mydebts.repository
 
 import android.util.Log
-import com.ospaltic.mydebts.data.local.DebtDao
 import com.ospaltic.mydebts.data.local.DebtRepayDao
 import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.RepayEntity

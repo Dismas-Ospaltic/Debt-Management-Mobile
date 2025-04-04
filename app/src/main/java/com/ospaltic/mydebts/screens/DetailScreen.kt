@@ -88,27 +88,6 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
     var showAddDebtDialog by remember { mutableStateOf(false) } // State to control popup visibility
 
 
-//    val paymentItems = listOf(
-//        PaymentItem("2025-03-10", "2025-04-10", "120.00", "120.00", "Paid"),
-//        PaymentItem("2025-03-05", "2025-04-05", "80.00", "20.00", "Partial"),
-//
-//    )
-
-
-//    val paymentItems = debts.map { debt ->
-//        DebtEntity(
-//            date = debt.date,
-//            dueDate = debt.dueDate,
-//            amount = debt.amount,
-//            debtId = debt.debtId,
-//            description = debt.description,
-//            uid = debt.uid,
-//            timestamp = debt.timestamp,
-//            status = debt.status
-//        )
-//    }
-
-
     val paymentItems by remember {
         derivedStateOf {
             debts.map { debt ->
@@ -116,6 +95,8 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
                     date = debt.date,
                     dueDate = debt.dueDate,
                     amount = debt.amount,
+                    amountPaid = debt.amountPaid,
+                    amountRem = debt.amountRem,
                     debtId = debt.debtId,
                     description = debt.description,
                     uid = debt.uid,
@@ -370,7 +351,7 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
 
     // Show the Payment Popup if showDialog is true
     if (showDialog) {
-        PayAllPopupScreen(onDismiss = { showDialog = false }, 200f)
+        PayAllPopupScreen(onDismiss = { showDialog = false } , totalAmount = 0f, itemId.toString() )
 
     }
 

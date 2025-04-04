@@ -64,6 +64,25 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
         }
     }
 
+
+
+    /**
+     * Update the values of a debt
+     */
+    fun updateDebtValues(debtId: String, newAmountRem: Float, newAmountPaid: Float) {
+        viewModelScope.launch {
+            val success = debtRepository.updateDebtValues(debtId, newAmountRem, newAmountPaid)
+            if (success) {
+                // Refresh debt list if update is successful
+                _debts.value = _debts.value.map { debt ->
+                    if (debt.debtId == debtId) debt.copy(amountRem = newAmountRem, amountPaid = newAmountPaid) else debt
+                }
+            }
+        }
+    }
+
+
+
     /**
      * Get a specific debt by its ID
      */
@@ -83,6 +102,20 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
             debtRepository.getTotalUnPaid(userId).collectLatest { total ->
                 Log.d("DebtViewModel", "Total unpaid Updated: $total") // Debugging
                 _totalPaid.value = total
+            }
+        }
+    }
+
+
+
+    private val _totalUnpaid = MutableStateFlow(0.0f)
+    val totalUnpaid: StateFlow<Float> = _totalUnpaid
+
+    fun fetchTotalUnpaid(userId: String) {
+        viewModelScope.launch {
+            debtRepository.getTotalUnPaid(userId).collectLatest { total ->
+                Log.d("DebtViewModel", "Total unpaid Updated: $total") // Debugging
+                _totalUnpaid.value = total
             }
         }
     }

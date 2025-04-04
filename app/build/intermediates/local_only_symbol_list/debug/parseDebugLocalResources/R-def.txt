@@ -45,7 +45,11 @@ drawable add_white
 drawable baseline_add_home_24
 drawable burden
 drawable calendar_icon
+drawable contract
 drawable debt
+drawable debtdash
+drawable debtdue
+drawable debthand
 drawable ic_analytics
 drawable ic_arror_right_gray
 drawable ic_arrow_back_darck

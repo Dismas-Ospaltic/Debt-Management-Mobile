@@ -142,8 +142,10 @@ fun AddDebtPopUpScreen(itemId: String?, onDismiss: () -> Unit) {
                        debtId = generateUniqueId(),
                        uid = itemId,
                        amount = amount.toFloat(),
+                       amountRem = amount.toFloat(),
+                       amountPaid = 0f,
                        description = description,
-                       status = "pending",
+                       status = "Pending",
                        dueDate = date
                    )
                 )

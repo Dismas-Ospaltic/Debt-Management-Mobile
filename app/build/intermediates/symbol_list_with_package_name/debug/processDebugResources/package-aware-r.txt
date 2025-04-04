@@ -2992,7 +2992,11 @@ drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
 drawable burden
 drawable calendar_icon
+drawable contract
 drawable debt
+drawable debtdash
+drawable debtdue
+drawable debthand
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off

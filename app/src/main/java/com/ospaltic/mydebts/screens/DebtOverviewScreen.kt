@@ -62,10 +62,11 @@ fun AccountScreen(navController: NavController) {
 
         // 🔹 Inline Grid Component
         val items = listOf(
-            Triple(R.drawable.user, "Users", 120),
-            Triple(R.drawable.user, "Admins", 10),
-            Triple(R.drawable.up_arrows, "Staff", 25),
-            Triple(R.drawable.burden, "Clients", 340)
+            Triple(R.drawable.user, "People / Clients", 120),
+            Triple(R.drawable.debtdash, "Total Debt", 1000),
+            Triple(R.drawable.burden, "Unpaid No.", 25),
+            Triple(R.drawable.debthand, "Paid No.", 340),
+            Triple(R.drawable.debtdue, "Past Due No.", 340)
         )
 
         val configuration = LocalConfiguration.current

@@ -26,12 +26,19 @@ class DebtRepository(private val debtDao: DebtDao) {
         return rowsUpdated > 0
     }
 
+    suspend fun  updateDebtValues(debtId: String, newAmountRem: Float, newAmountPaid: Float): Boolean {
+        val rowsUpdated = debtDao. updateDebtValues(debtId, newAmountRem, newAmountPaid) ?: 0
+        return rowsUpdated > 0
+    }
+
+
+
 
     suspend fun getDebtById(debtId: String): DebtEntity? {
         return debtDao.getDebtById(debtId)
     }
 
-    fun getTotalUnPaid(userId: String): Flow<Float> {
+        fun getTotalUnPaid(userId: String): Flow<Float> {
         return debtDao.getAllUnpaidTotal(userId)
             .map { total -> total ?: 0.0f }  // Convert NULL to 0.0
     }

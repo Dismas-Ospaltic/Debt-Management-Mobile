@@ -159,6 +159,7 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
                         )
                     )
                     debtViewModel.updateDebtStatus(debt.debtId, newStatus)
+                    debtViewModel.updateDebtValues(debt.debtId,balance,((amountPaid - change) + totalPaid))
 //                    debtViewModel.updateDebt(debt.copy(status = newStatus))
                     onDismiss()
                 }

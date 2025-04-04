@@ -60,7 +60,8 @@ fun PaymentBox(navController: NavController, debt: DebtEntity) {
                 Text("Date: ${debt.date}", color = Color.Black, fontSize = 16.sp)
                 Text("Due Date: ${debt.dueDate}", color = Color.Black, fontSize = 16.sp)
                 Text("Amount: ${debt.amount}", color = Color.Black, fontSize = 16.sp)
-//                Text("Paid: ${payment.paid}", color = Color.Green, fontSize = 16.sp)
+                Text("Paid: ${debt.amountPaid}", color = Color.Green, fontSize = 16.sp)
+                Text("Amount Rem: ${debt.amountRem}", color = Color.Green, fontSize = 16.sp)
             }
 
             // Right Section (Buttons)

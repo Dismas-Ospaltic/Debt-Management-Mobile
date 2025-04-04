@@ -25,6 +25,12 @@ interface DebtDao {
      @Query("UPDATE debt SET status = :status WHERE debtId = :debtId")
      suspend fun updateDebtStatus(debtId: String, status: String): Int?
 
+    @Query("UPDATE debt SET amountRem = :amountRem, amountPaid= :amountPaid WHERE debtId = :debtId")
+    suspend fun updateDebtValues(debtId: String, amountRem: Float, amountPaid: Float): Int?
+
+//    val amountRem: Float,
+//    val amountPaid: Float,
+
     @Query("SELECT * FROM debt WHERE uid = :userId ORDER BY timestamp DESC")
     fun getAllDebt(userId: String): Flow<List<DebtEntity>>
 
@@ -33,6 +39,11 @@ interface DebtDao {
     suspend fun getDebtById(debtId: String): DebtEntity?
 
 
-    @Query("SELECT SUM(amount) FROM debt WHERE uid = :userId AND status = 'pending'")
+
+    @Query("SELECT SUM(amountRem) FROM debt WHERE uid = :userId AND (status = 'Pending' OR status = 'Partial')")
     fun getAllUnpaidTotal(userId: String): Flow<Float?>
+//
+//    @Query("SELECT SUM(amount) FROM debt WHERE uid = :userId AND status = 'pending'")
+//    fun getAllUnpaidTotal(userId: String): Flow<Float?>
+
 }

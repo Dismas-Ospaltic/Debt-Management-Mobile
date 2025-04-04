@@ -1,5 +1,6 @@
 package com.ospaltic.mydebts.screens.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +12,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -24,13 +27,33 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ospaltic.mydebts.R
+import com.ospaltic.mydebts.model.DebtEntity
+import com.ospaltic.mydebts.utils.formatDate
+import com.ospaltic.mydebts.viewmodel.DebtPayViewModel
+import com.ospaltic.mydebts.viewmodel.DebtViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float) {
+fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float, itemId: String) {
     var amount by remember { mutableStateOf("") }
     var balance by remember { mutableFloatStateOf(0f) }
     var change by remember { mutableFloatStateOf(0f) }
 
+
+    val debtPayViewModel: DebtPayViewModel = koinViewModel()
+    val currentDate = remember { System.currentTimeMillis() }
+    val formattedDate = formatDate(currentDate)
+    val debtViewModel: DebtViewModel = koinViewModel()
+
+    val totalUnpaid by debtViewModel.totalUnpaid.collectAsState()
+
+
+    LaunchedEffect(itemId) {
+        itemId.let { debtViewModel.fetchTotalUnpaid(itemId)
+            Log.d("UI", "Fetching total unpaid for: $itemId") // Debugging
+        }
+
+    }
 
     val errorColor = colorResource(id = R.color.red)
     var amountError by remember { mutableStateOf(false) }
@@ -61,7 +84,7 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float) {
 
                 // Display Total Amount
                 Text(
-                    text = "Total Amount: ${"%.2f".format(totalAmount)}",
+                    text = "$totalUnpaid Total Amount: ${"%.2f".format(totalAmount)}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )

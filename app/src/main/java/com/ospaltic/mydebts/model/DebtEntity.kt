@@ -12,6 +12,8 @@ data class DebtEntity(
     val description: String,
     val dueDate: String, //DD-MM-YYYY
     val amount: Float,
+    val amountRem: Float,
+    val amountPaid: Float,
     val status: String, //paid, partial, pending
     val timestamp: Long = System.currentTimeMillis()
 )

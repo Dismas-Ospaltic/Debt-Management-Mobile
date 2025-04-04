@@ -9,7 +9,7 @@ import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PeopleEntity
 import com.ospaltic.mydebts.model.RepayEntity
 
-@Database(entities = [PeopleEntity::class, DebtEntity::class, RepayEntity::class], version = 3, exportSchema = false)
+@Database(entities = [PeopleEntity::class, DebtEntity::class, RepayEntity::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun peopleDao(): PeopleDao
