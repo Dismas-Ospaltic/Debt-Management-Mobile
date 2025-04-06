@@ -16,9 +16,24 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
     private val _debts = MutableStateFlow<List<DebtEntity>>(emptyList())
     val debts: StateFlow<List<DebtEntity>> = _debts
 
+//    // Holds the list of debt Ids for a specific user
+//    private val _debtsId = MutableStateFlow<List<DebtEntity>>(emptyList())
+//    val debtsId: StateFlow<List<DebtEntity>> = _debtsId
+
+    private val _debtsId = MutableStateFlow<List<String>>(emptyList())
+    val debtsId: StateFlow<List<String>> = _debtsId
+
+
+
     // Holds a single debt item
     private val _debtDetail = MutableStateFlow<DebtEntity?>(null)
     val debtDetail: StateFlow<DebtEntity?> = _debtDetail
+
+
+
+//    // Holds a single debt item amount Rem
+//    private val _debtAmountRem = MutableStateFlow<DebtEntity?>(null)
+//    val debtAmountRem: StateFlow<DebtEntity?> = _debtAmountRem
 
     /**
      * Fetch all debts for a specific user
@@ -30,6 +45,30 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
             }
         }
     }
+
+
+    /**
+     * Fetch all debts id for a specific user
+     */
+//    fun getAllDebtsId(userId: String) {
+//        viewModelScope.launch {
+//            debtRepository.getAllDebtId(userId).collectLatest { debtList ->
+//                _debtsId.value = debtList
+//            }
+//        }
+//    }
+
+
+
+
+    fun getAllDebtsId(userId: String) {
+        viewModelScope.launch {
+            debtRepository.getAllDebtId(userId).collectLatest { debtList ->
+                _debtsId.value = debtList // _debtsId should be StateFlow<List<String>>
+            }
+        }
+    }
+
 
     /**
      * Insert a new debt record
@@ -91,6 +130,22 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
             _debtDetail.value = debtRepository.getDebtById(debtId)
         }
     }
+
+
+
+    suspend fun fetchDebtById(debtId: String): DebtEntity? {
+        return debtRepository.getDebtById(debtId)
+    }
+
+
+    /**
+     * Get a specific debt by its ID
+     */
+//    fun getAmountRemDebtById(debtId: String) {
+//        viewModelScope.launch {
+//            _debtAmountRem.value = debtRepository.getDebtAmountRemById(debtId)
+//        }
+//    }
 
 
 

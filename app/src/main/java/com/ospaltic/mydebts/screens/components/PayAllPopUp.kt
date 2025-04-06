@@ -1,6 +1,7 @@
 package com.ospaltic.mydebts.screens.components
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,9 +19,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -28,13 +31,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ospaltic.mydebts.R
 import com.ospaltic.mydebts.model.DebtEntity
+import com.ospaltic.mydebts.model.RepayEntity
 import com.ospaltic.mydebts.utils.formatDate
 import com.ospaltic.mydebts.viewmodel.DebtPayViewModel
 import com.ospaltic.mydebts.viewmodel.DebtViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float, itemId: String) {
+fun PayAllPopupScreen(onDismiss: () -> Unit, itemId: String) {
     var amount by remember { mutableStateOf("") }
     var balance by remember { mutableFloatStateOf(0f) }
     var change by remember { mutableFloatStateOf(0f) }
@@ -44,16 +49,26 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float, itemId: String)
     val currentDate = remember { System.currentTimeMillis() }
     val formattedDate = formatDate(currentDate)
     val debtViewModel: DebtViewModel = koinViewModel()
-
+    val context = LocalContext.current
     val totalUnpaid by debtViewModel.totalUnpaid.collectAsState()
+    val debtDetails by debtViewModel.debtDetail.collectAsState()
 
 
     LaunchedEffect(itemId) {
         itemId.let { debtViewModel.fetchTotalUnpaid(itemId)
             Log.d("UI", "Fetching total unpaid for: $itemId") // Debugging
         }
-
     }
+
+        val debtsId by debtViewModel.debtsId.collectAsState()
+
+        LaunchedEffect(Unit) {
+            debtViewModel.getAllDebtsId(itemId)
+    }
+
+
+
+
 
     val errorColor = colorResource(id = R.color.red)
     var amountError by remember { mutableStateOf(false) }
@@ -61,11 +76,11 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float, itemId: String)
     fun updateBalance(newAmount: String) {
         val amountFloat = newAmount.toFloatOrNull() ?: 0f
 
-        if (amountFloat >= totalAmount) {
+        if (amountFloat >= totalUnpaid) {
             balance = 0f
-            change = amountFloat - totalAmount // Extra amount paid
+            change = amountFloat - totalUnpaid // Extra amount paid
         } else {
-            balance = totalAmount - amountFloat // Remaining balance (negative)
+            balance = totalUnpaid - amountFloat // Remaining balance (negative)
             change = 0f
         }
     }
@@ -84,7 +99,7 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float, itemId: String)
 
                 // Display Total Amount
                 Text(
-                    text = "$totalUnpaid Total Amount: ${"%.2f".format(totalAmount)}",
+                    text = "Total Amount: $totalUnpaid",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -139,10 +154,56 @@ fun PayAllPopupScreen(onDismiss: () -> Unit, totalAmount: Float, itemId: String)
             }
         },
         confirmButton = {
+
+            val coroutineScope = rememberCoroutineScope()
+
             TextButton(onClick = { /* Handle payment submission */
                 if (validateInputs()) {
+                    if (amount.toFloat() >= totalUnpaid){
+                       Toast.makeText(context, "Payment Successful", Toast.LENGTH_LONG).show()
+//                        for (debtId in debtsId) {
+//                            debtViewModel.updateDebtStatus(debtId.toString(), "Paid")
+//
+//                            LaunchedEffect(Unit) {
+//                                debtViewModel.getDebtById(debtId)
+//                            }
+//
+//
+//                            debtViewModel.updateDebtValues(debtId.toString(),0f,DebtEntity.amou)
+//                        }
 
-                    onDismiss()
+                        coroutineScope.launch {
+                            for (debtId in debtsId) {
+
+                                val debt = debtViewModel.fetchDebtById(debtId.toString())
+                                debtViewModel.updateDebtStatus(debtId.toString(), "Paid")
+                                if (debt != null) {
+                                    debtViewModel.updateDebtValues(
+                                        debtId.toString(),
+                                        0f, /* correctAmountHere */
+                                        debt.amount
+                                    )
+
+                                    debtPayViewModel.insertRepayment(
+                                        RepayEntity(
+                                            uid = itemId,
+                                            amountPaid = debt.amountRem,
+                                            amountRem = 0f,
+                                            date = formattedDate,
+                                            debtId = debtId.toString()
+                                        )
+                                    )
+
+
+                                }
+                            }
+                            onDismiss()
+                        }
+                    }else{
+                        Toast.makeText(context, "Amount is less", Toast.LENGTH_LONG).show()
+
+                    }
+
                 }
             }) {
                 Text("Pay", color = colorResource(R.color.green))

@@ -38,10 +38,23 @@ interface DebtDao {
     @Query("SELECT * FROM debt WHERE debtId = :debtId LIMIT 1")
     suspend fun getDebtById(debtId: String): DebtEntity?
 
+//    @Query("SELECT * FROM debt WHERE debtId = :debtId LIMIT 1")
+//    suspend fun getDebtAmountRemById(debtId: String): DebtEntity?
+
 
 
     @Query("SELECT SUM(amountRem) FROM debt WHERE uid = :userId AND (status = 'Pending' OR status = 'Partial')")
     fun getAllUnpaidTotal(userId: String): Flow<Float?>
+
+
+//    @Query("SELECT debtId FROM debt WHERE uid = :userId AND (status = 'Pending' OR status = 'Partial')")
+//     fun getDebtIdByUid(userId: String): Flow<List<DebtEntity>>
+
+
+
+    @Query("SELECT debtId FROM debt WHERE uid = :userId AND (status = 'Pending' OR status = 'Partial')")
+    fun getDebtIdByUid(userId: String): Flow<List<String>>
+
 //
 //    @Query("SELECT SUM(amount) FROM debt WHERE uid = :userId AND status = 'pending'")
 //    fun getAllUnpaidTotal(userId: String): Flow<Float?>

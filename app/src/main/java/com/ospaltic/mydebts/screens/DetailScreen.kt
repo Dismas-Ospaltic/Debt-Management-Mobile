@@ -351,7 +351,7 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
 
     // Show the Payment Popup if showDialog is true
     if (showDialog) {
-        PayAllPopupScreen(onDismiss = { showDialog = false } , totalAmount = 0f, itemId.toString() )
+        PayAllPopupScreen(onDismiss = { showDialog = false } , itemId.toString() )
 
     }
 

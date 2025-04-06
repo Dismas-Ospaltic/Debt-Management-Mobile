@@ -11,6 +11,11 @@ class DebtRepository(private val debtDao: DebtDao) {
 //    val allDebt: Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
     fun getAllDebt(userId: String): Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
 
+    //    val allDebt: Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
+//    fun getAllDebtId(userId: String): Flow<List<DebtEntity>> = debtDao.getDebtIdByUid(userId)
+    fun getAllDebtId(userId: String): Flow<List<String>> = debtDao.getDebtIdByUid(userId)
+
+
     suspend fun insert(debt: DebtEntity) {
         debtDao.insertDebt(debt)
     }
@@ -37,6 +42,11 @@ class DebtRepository(private val debtDao: DebtDao) {
     suspend fun getDebtById(debtId: String): DebtEntity? {
         return debtDao.getDebtById(debtId)
     }
+
+
+//    suspend fun getDebtAmountRemById(debtId: String): DebtEntity? {
+//        return debtDao.getDebtAmountRemById(debtId)
+//    }
 
         fun getTotalUnPaid(userId: String): Flow<Float> {
         return debtDao.getAllUnpaidTotal(userId)
