@@ -1,6 +1,7 @@
 package com.ospaltic.mydebts.viewmodel
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ospaltic.mydebts.model.PeopleEntity
@@ -8,6 +9,7 @@ import com.ospaltic.mydebts.repository.PeopleRepository
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class PeopleViewModel(private val repository: PeopleRepository) : ViewModel() {
@@ -53,6 +55,20 @@ class PeopleViewModel(private val repository: PeopleRepository) : ViewModel() {
         viewModelScope.launch {
             val person = repository.getPersonById(userId)
             _personState.value = person
+        }
+    }
+
+
+
+
+    private val _totalPeople = MutableStateFlow(0)
+    val totalPeople : StateFlow<Int> = _totalPeople
+
+    fun fetchTotalNoPeople() {
+        viewModelScope.launch {
+            repository.getAllTotalPeople().collectLatest { total ->
+                _totalPeople.value = total
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package com.ospaltic.mydebts.repository
 import com.ospaltic.mydebts.data.local.DebtDao
 import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PeopleEntity
+import com.ospaltic.mydebts.utils.formatDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -52,6 +53,44 @@ class DebtRepository(private val debtDao: DebtDao) {
         return debtDao.getAllUnpaidTotal(userId)
             .map { total -> total ?: 0.0f }  // Convert NULL to 0.0
     }
+
+    fun getAllUnpaidTotalAllPeople(): Flow<Float> {
+        return debtDao.getAllUnpaidTotalAllPeople()
+            .map { total -> total ?: 0.0f }  // Convert NULL to 0.0
+    }
+
+
+
+    fun getAllTotalPartialDebt(): Flow<Int> {
+        return debtDao.getAllTotalPartialDebt()
+            .map { total -> total ?: 0 }  // Convert NULL to 0.0
+    }
+
+
+    fun getAllTotalPendingDebt(): Flow<Int> {
+        return debtDao.getAllTotalPendingDebt()
+            .map { total -> total ?: 0 }  // Convert NULL to 0.0
+    }
+
+
+    fun getAllTotalPaidDebt(): Flow<Int> {
+        return debtDao.getAllTotalPaidDebt()
+            .map { total -> total ?: 0 }  // Convert NULL to 0.0
+    }
+
+    fun getAllTotalPastDueDebt(): Flow<Int> {
+        val currentDate = System.currentTimeMillis()
+        val formattedDate = formatDate(currentDate) // Should return "DD-MM-YYYY"
+        return debtDao.getAllTotalPastDueDebt(formattedDate)
+            .map { total -> total ?: 0 }  // Convert NULL to 0.0
+    }
+
+
+
+
+
+
+
 
 }
 

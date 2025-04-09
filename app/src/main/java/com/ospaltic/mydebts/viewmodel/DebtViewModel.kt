@@ -149,14 +149,13 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
 
 
 
-    private val _totalPaid = MutableStateFlow(0.0f)
-    val totalPaid: StateFlow<Float> = _totalPaid
+    private val _totalPaidAllPeople = MutableStateFlow(0.0f)
+    val totalPaidAllPeople: StateFlow<Float> = _totalPaidAllPeople
 
-    fun fetchTotalUnpaidPaid(userId: String) {
+    fun fetchTotalUnpaidPaidAllPeople() {
         viewModelScope.launch {
-            debtRepository.getTotalUnPaid(userId).collectLatest { total ->
-                Log.d("DebtViewModel", "Total unpaid Updated: $total") // Debugging
-                _totalPaid.value = total
+            debtRepository.getAllUnpaidTotalAllPeople().collectLatest { total ->
+                _totalPaidAllPeople.value = total
             }
         }
     }
@@ -174,6 +173,62 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
             }
         }
     }
+
+
+
+
+    private val _totalNoUnpaid = MutableStateFlow(0)
+    val totalNoUnpaid : StateFlow<Int> = _totalNoUnpaid
+
+    fun fetchTotalNoUnpaid() {
+        viewModelScope.launch {
+            debtRepository.getAllTotalPendingDebt().collectLatest { total ->
+                _totalNoUnpaid.value = total
+            }
+        }
+    }
+
+
+
+
+    private val _totalNoPartial = MutableStateFlow(0)
+    val totalNoPartial : StateFlow<Int> = _totalNoPartial
+
+    fun fetchTotalNoPartial() {
+        viewModelScope.launch {
+           debtRepository.getAllTotalPartialDebt().collectLatest { total ->
+                _totalNoPartial.value = total
+            }
+        }
+    }
+
+
+
+
+    private val _totalNoPaid = MutableStateFlow(0)
+    val totalNoPaid : StateFlow<Int> = _totalNoPaid
+
+    fun fetchTotalNoPeople() {
+        viewModelScope.launch {
+            debtRepository.getAllTotalPaidDebt().collectLatest { total ->
+                _totalNoPaid.value = total
+            }
+        }
+    }
+
+
+    private val _totalNoOverDue = MutableStateFlow(0)
+    val totalNoOverDue : StateFlow<Int> = _totalNoOverDue
+
+    fun fetchTotalNoOverDue() {
+        viewModelScope.launch {
+            debtRepository.getAllTotalPastDueDebt().collectLatest { total ->
+                _totalNoPaid.value = total
+            }
+        }
+    }
+
+
 
 //
 }

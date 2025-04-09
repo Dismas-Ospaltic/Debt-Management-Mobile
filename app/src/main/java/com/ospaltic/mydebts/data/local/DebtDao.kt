@@ -1,5 +1,6 @@
 package com.ospaltic.mydebts.data.local
 
+import androidx.compose.runtime.remember
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -8,6 +9,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.ospaltic.mydebts.model.DebtEntity
 import com.ospaltic.mydebts.model.PeopleEntity
+import com.ospaltic.mydebts.utils.formatDate
 import kotlinx.coroutines.flow.Flow
 
 //This interface defines the database operations.
@@ -51,9 +53,29 @@ interface DebtDao {
 //     fun getDebtIdByUid(userId: String): Flow<List<DebtEntity>>
 
 
+    @Query("SELECT SUM(amountRem) FROM debt WHERE status = 'Pending' OR status = 'Partial'")
+    fun getAllUnpaidTotalAllPeople(): Flow<Float?>
+
 
     @Query("SELECT debtId FROM debt WHERE uid = :userId AND (status = 'Pending' OR status = 'Partial')")
     fun getDebtIdByUid(userId: String): Flow<List<String>>
+
+
+
+    @Query("SELECT COUNT(*) FROM debt WHERE status = 'Pending'")
+    fun getAllTotalPendingDebt(): Flow<Int?>
+
+    @Query("SELECT COUNT(*) FROM debt WHERE status = 'Partial'")
+    fun getAllTotalPartialDebt(): Flow<Int?>
+
+
+    @Query("SELECT COUNT(*) FROM debt WHERE status = 'Paid'")
+    fun getAllTotalPaidDebt(): Flow<Int?>
+
+
+
+    @Query("SELECT COUNT(*) FROM debt WHERE dueDate < :formattedDate AND (status = 'Pending' OR status = 'Partial')")
+    fun getAllTotalPastDueDebt(formattedDate: String): Flow<Int?>
 
 //
 //    @Query("SELECT SUM(amount) FROM debt WHERE uid = :userId AND status = 'pending'")

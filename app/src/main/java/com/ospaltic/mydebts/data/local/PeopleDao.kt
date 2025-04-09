@@ -21,8 +21,11 @@ interface PeopleDao {
     @Query("SELECT * FROM people ORDER BY timestamp DESC")
     fun getAllPeople(): Flow<List<PeopleEntity>>
 
-
     @Query("SELECT * FROM people WHERE uid = :userId LIMIT 1")
     suspend fun getPersonById(userId: String): PeopleEntity?
+
+    @Query("SELECT COUNT(*) FROM people")
+    fun getAllTotalPeople(): Flow<Int?>
+
 }
 

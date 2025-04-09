@@ -1,5 +1,6 @@
 package com.ospaltic.mydebts.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -23,6 +25,11 @@ import androidx.navigation.NavController
 import com.ospaltic.mydebts.R
 import com.ospaltic.mydebts.navigation.Screen
 import com.ospaltic.mydebts.utils.DynamicStatusBar
+import com.ospaltic.mydebts.utils.formatDate
+import com.ospaltic.mydebts.viewmodel.DebtPayViewModel
+import com.ospaltic.mydebts.viewmodel.DebtViewModel
+import com.ospaltic.mydebts.viewmodel.PeopleViewModel
+import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
@@ -31,6 +38,35 @@ fun AccountScreen(navController: NavController) {
     val backgroundColor = colorResource(id = R.color.white)
 
     DynamicStatusBar(backgroundColor)  // ✅ Apply dynamic status bar settings
+
+
+    val peopleViewModel: PeopleViewModel = koinViewModel()
+    val context = LocalContext.current
+    val debtViewModel: DebtViewModel = koinViewModel()
+
+
+    val totalPeople by peopleViewModel.totalPeople.collectAsState()
+    val totalUnpaidPeople by debtViewModel.totalPaidAllPeople.collectAsState()
+    val totalNoPaid by debtViewModel.totalNoPaid.collectAsState()
+    val totalNoPartial by debtViewModel.totalNoPartial.collectAsState()
+    val totalNoPending by debtViewModel.totalNoUnpaid.collectAsState()
+    val totalNoOverDue by debtViewModel.totalNoOverDue.collectAsState()
+
+    LaunchedEffect(Unit)  {
+        peopleViewModel.fetchTotalNoPeople()
+       debtViewModel.fetchTotalUnpaidPaidAllPeople()
+        debtViewModel.fetchTotalNoUnpaid()
+        debtViewModel.fetchTotalNoPartial()
+        debtViewModel.fetchTotalNoPeople()
+        debtViewModel.fetchTotalNoOverDue()
+    }
+
+
+
+
+
+
+
 
     Column(
         modifier = Modifier
@@ -62,11 +98,12 @@ fun AccountScreen(navController: NavController) {
 
         // 🔹 Inline Grid Component
         val items = listOf(
-            Triple(R.drawable.user, "People / Clients", 120),
-            Triple(R.drawable.debtdash, "Total Debt", 1000),
-            Triple(R.drawable.burden, "Unpaid No.", 25),
-            Triple(R.drawable.debthand, "Paid No.", 340),
-            Triple(R.drawable.debtdue, "Past Due No.", 340)
+            Triple(R.drawable.user, "People / Clients", totalPeople.toInt()),
+            Triple(R.drawable.debtdash, "Total Debt", totalUnpaidPeople.toInt()),
+            Triple(R.drawable.burden, "Unpaid No.", totalNoPending),
+            Triple(R.drawable.debthand, "Paid No.", totalNoPaid),
+            Triple(R.drawable.debthand, "Partial No.", totalNoPartial),
+            Triple(R.drawable.debtdue, "Past Due No.", totalNoOverDue)
         )
 
         val configuration = LocalConfiguration.current

@@ -3,6 +3,7 @@ package com.ospaltic.mydebts.repository
 import com.ospaltic.mydebts.data.local.PeopleDao
 import com.ospaltic.mydebts.model.PeopleEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 
 class PeopleRepository(private val peopleDao: PeopleDao) {
@@ -24,6 +25,13 @@ class PeopleRepository(private val peopleDao: PeopleDao) {
     suspend fun getPersonById(userId: String): PeopleEntity? {
         return peopleDao.getPersonById(userId)
     }
+
+
+    fun getAllTotalPeople(): Flow<Int> {
+        return peopleDao.getAllTotalPeople()
+            .map { total -> total ?: 0 }  // Convert NULL to 0.0
+    }
+
 
 }
 
