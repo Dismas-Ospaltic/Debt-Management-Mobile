@@ -111,7 +111,7 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
     val buttons = listOf(
         ButtonItem("Add Debt", R.drawable.ic_money) { showAddDebtDialog = true },
         ButtonItem("Pay All", R.drawable.ic_money) { showDialog = true  },
-        ButtonItem("Show History", R.drawable.ic_clipboard) { navController.navigate(Screen.DebtHistDetail.createRoute(itemId.toString())) },
+//        ButtonItem("Show History", R.drawable.ic_clipboard) { navController.navigate(Screen.DebtHistDetail.createRoute(itemId.toString())) },
     )
     val columns = if (LocalConfiguration.current.screenWidthDp < 600) 2 else 3 // Responsive grid
 

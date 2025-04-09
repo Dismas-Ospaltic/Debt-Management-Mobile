@@ -95,7 +95,7 @@ fun PaymentBox(navController: NavController, debt: DebtEntity) {
 
 
                 Button(
-                    onClick = { },
+                    onClick = { navController.navigate(Screen.DebtDetail.createRoute(debt.debtId)) },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = colorResource(id = R.color.teal_700)
                     ),
