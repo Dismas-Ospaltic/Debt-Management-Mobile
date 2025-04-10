@@ -206,12 +206,12 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
                         color = Color.White.copy(alpha = 0.8f)
                     )
                     Text(
-                        text = person.address.takeIf { it.isNotBlank() } ?: "Not set",
+                        text = person.address.takeIf { it.isNotBlank() } ?: "address...",
                         fontSize = 16.sp,
                         color = Color.White.copy(alpha = 0.8f)
                     )
                     Text(
-                        text = person.businessName.takeIf { it.isNotBlank() } ?: "Not set",
+                        text = person.businessName.takeIf { it.isNotBlank() } ?: "Business...",
                         fontSize = 16.sp,
                         color = Color.White.copy(alpha = 0.8f)
                     )

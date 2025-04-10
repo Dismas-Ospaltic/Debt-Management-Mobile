@@ -3,6 +3,6 @@ import android.icu.text.SimpleDateFormat
 import java.util.*
 
 fun formatDate(timestamp: Long): String {
-    val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     return sdf.format(Date(timestamp))
 }
