@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.androidTest~1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.unitTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.main~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My Debts.My_Debts.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/My_Debts.iml" filepath="$PROJECT_DIR$/.idea/modules/My_Debts.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/My_Debts.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/My_Debts.app.iml" />
     </modules>
