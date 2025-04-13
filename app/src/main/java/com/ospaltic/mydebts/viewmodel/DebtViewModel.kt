@@ -223,7 +223,7 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
     fun fetchTotalNoOverDue() {
         viewModelScope.launch {
             debtRepository.getAllTotalPastDueDebt().collectLatest { total ->
-                _totalNoPaid.value = total
+                _totalNoOverDue.value = total
             }
         }
     }

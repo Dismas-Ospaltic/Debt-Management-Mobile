@@ -73,7 +73,6 @@ interface DebtDao {
     fun getAllTotalPaidDebt(): Flow<Int?>
 
 
-
     @Query("SELECT COUNT(*) FROM debt WHERE dueDate < :formattedDate AND (status = 'Pending' OR status = 'Partial')")
     fun getAllTotalPastDueDebt(formattedDate: String): Flow<Int?>
 
