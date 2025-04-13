@@ -12,10 +12,12 @@ import com.ospaltic.mydebts.screens.DebtHistoryScreen
 import com.ospaltic.mydebts.screens.HomeScreen
 import com.ospaltic.mydebts.screens.DetailScreen
 import com.ospaltic.mydebts.screens.PayHistoryScreen
+import com.ospaltic.mydebts.screens.SettingsScreen
 
 sealed class Screen(val route: String) {
     object Home : Screen("People")
     object Account : Screen("Debt")
+    object Setting : Screen("Setting")
     object Detail : Screen("detail/{itemId}") {
         fun createRoute(itemId: String) = "detail/$itemId"
     }
@@ -45,6 +47,7 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         popExitTransition = { slideOutHorizontally(targetOffsetX = { 1000 }) + fadeOut() }
     ) {
         composable(Screen.Home.route) { HomeScreen(navController) }
+        composable(Screen.Setting.route) { SettingsScreen(navController) }
         composable(Screen.Account.route) { AccountScreen(navController) }
         composable(Screen.Detail.route) { backStackEntry ->
             val itemId = backStackEntry.arguments?.getString("itemId") ?: "Unknown"

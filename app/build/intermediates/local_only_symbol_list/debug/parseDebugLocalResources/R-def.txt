@@ -59,6 +59,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_money
 drawable ic_search
+drawable ic_setting
 drawable record01
 drawable record02
 drawable record03

@@ -3028,6 +3028,7 @@ int drawable ic_mtrl_chip_checked_circle 0x7f0700a0
 int drawable ic_mtrl_chip_close_circle 0x7f0700a1
 int drawable ic_search 0x7f0700a2
 int drawable ic_search_black_24 0x7f0700a3
+int drawable ic_setting 0x7f0700fd
 int drawable indeterminate_static 0x7f0700a4
 int drawable m3_avd_hide_password 0x7f0700a5
 int drawable m3_avd_show_password 0x7f0700a6

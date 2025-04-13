@@ -78,7 +78,7 @@ fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination?.route
 
-    val screens = listOf(Screen.Home, Screen.Account)
+    val screens = listOf(Screen.Home, Screen.Account, Screen.Setting)
 
     val backgroundColor = colorResource(id = R.color.bottom_bar_background)
     val selectedColor = colorResource(id = R.color.tab_selected)
@@ -113,6 +113,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                             id = when (screen) {
                                 is Screen.Home -> R.drawable.ic_home  // Home icon from res
                                 is Screen.Account -> R.drawable.ic_analytics  // Account icon from res
+                                is Screen.Setting -> R.drawable.ic_setting
                                 else -> R.drawable.ic_home  // Fallback icon
                             }
                         ),
@@ -144,3 +145,4 @@ fun BottomNavigationBar(navController: NavHostController) {
 fun BottomNavigationBarPreview() {
     BottomNavigationBar(navController = rememberNavController())
 }
+
