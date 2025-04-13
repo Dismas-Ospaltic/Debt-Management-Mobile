@@ -42,9 +42,14 @@ import com.ospaltic.mydebts.screens.components.PayAllPopupScreen
 import com.ospaltic.mydebts.screens.components.PaymentBox
 import com.ospaltic.mydebts.screens.components.PaymentPopupScreen
 import com.ospaltic.mydebts.utils.DynamicStatusBar
+import com.ospaltic.mydebts.utils.formatDate
 import com.ospaltic.mydebts.viewmodel.DebtViewModel
 import com.ospaltic.mydebts.viewmodel.PeopleViewModel
 import org.koin.androidx.compose.koinViewModel
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+import kotlin.math.absoluteValue
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,6 +71,11 @@ fun DebtDetailScreen(navController: NavController, itemId: String?) {
 
     val debtViewModel: DebtViewModel = koinViewModel()
     val debtDetail by debtViewModel.debtDetail.collectAsState()
+
+    val currentDate = System.currentTimeMillis()
+    val formattedDate = formatDate(currentDate) // Should return "DD-MM-YYYY"
+
+    val days = debtDetail?.let { daysBetweenDates(formattedDate, it.dueDate) }
 
 
 
@@ -150,6 +160,53 @@ fun DebtDetailScreen(navController: NavController, itemId: String?) {
                         .padding(16.dp)
                         .align(Alignment.BottomStart)
                 ) {
+
+
+                    days?.let { safeDays ->
+                        val boxColor = if (safeDays < 0) colorResource(id = R.color.red) else colorResource(id = R.color.green)
+                        val message = if (safeDays < 0) "Past due by ${-safeDays} days" else "$safeDays days remaining until due"
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(0.8f)
+                                .padding(0.dp)
+                                .background(boxColor, shape = RoundedCornerShape(12.dp))
+                        ) {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Text(
+                                    text = message,
+                                    fontSize = 16.sp,
+                                    color = colorResource(id = R.color.white)
+                                )
+                            }
+                        }
+                    }
+
+
+//                    Box(
+//                        modifier = Modifier
+//                            .fillMaxWidth(0.8f)
+//                            .padding(0.dp)
+//                            .background(colorResource(id = R.color.green), shape = RoundedCornerShape(12.dp)) // Use your background color
+//                    ) {
+//                        Column(
+//                            modifier = Modifier.fillMaxWidth()
+//                                .padding(16.dp),
+//                            verticalArrangement = Arrangement.spacedBy(8.dp)// Spacing between rows
+//                        ) {
+//                            Text(
+//                                text = "$days days remaining until due",
+//                                fontSize = 16.sp,
+//                                color = colorResource(id = R.color.white)
+//                            )
+//                        }
+//
+//                    }
                         Text(
                             text ="Debt Id: ${debtDetail?.id}",
                             fontSize = 16.sp,
@@ -226,6 +283,16 @@ fun DebtDetailScreen(navController: NavController, itemId: String?) {
 
         }
     }
+
+
+fun daysBetweenDates(date1: String, date2: String): Long {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    val firstDate = LocalDate.parse(date1, formatter)
+    val secondDate = LocalDate.parse(date2, formatter)
+
+    // Subtract secondDate from firstDate (first - second)
+    return ChronoUnit.DAYS.between(secondDate, firstDate)
+}
 
 
 
