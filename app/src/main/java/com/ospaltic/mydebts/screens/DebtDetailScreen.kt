@@ -75,7 +75,7 @@ fun DebtDetailScreen(navController: NavController, itemId: String?) {
     val currentDate = System.currentTimeMillis()
     val formattedDate = formatDate(currentDate) // Should return "DD-MM-YYYY"
 
-    val days = debtDetail?.let { daysBetweenDates(formattedDate, it.dueDate) }
+    val days = debtDetail?.let { daysBetweenDates(it.dueDate, formattedDate) }
 
 
 

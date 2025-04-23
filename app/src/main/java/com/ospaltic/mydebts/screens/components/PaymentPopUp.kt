@@ -95,7 +95,7 @@ fun PaymentPopupScreen(onDismiss: () -> Unit, debt: DebtEntity) {
         text = {
             Column {
                 Text(
-                    text = "$totalPaid Total Amount: ${"%.2f".format(totalAmount)}",
+                    text = "Total Amount: ${"%.2f".format(totalAmount)}",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )

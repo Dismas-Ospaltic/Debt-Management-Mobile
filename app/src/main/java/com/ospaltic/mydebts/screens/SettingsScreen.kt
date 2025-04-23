@@ -88,7 +88,7 @@ fun SettingsScreen(navController: NavController) {
                     .clickable {
                         val intent = Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("https://ospaltictech.github.io/MyDebts/privacy.html")
+                            Uri.parse("https://st11-homy.github.io/MyDebts/privacy.html")
                         )
                         context.startActivity(intent)
                     }
