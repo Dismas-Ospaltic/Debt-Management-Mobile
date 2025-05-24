@@ -88,10 +88,13 @@ MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] C:\Users\Use
 MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\f1024354faf3104f5672108de7c50b30\transformed\core-ktx-1.15.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\User\.gradle\caches\8.9\transforms\4382c8feb2797514d4fabdee446f963c\transformed\room-runtime-2.6.1\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\User\.gradle\caches\8.9\transforms\46f87306dfced88a89320516b3066288\transformed\room-ktx-2.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\96ab97357b1467885e97216c2453e90b\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\32afeff501d33dd1f1b4642ec9cb42f2\transformed\datastore-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.8] C:\Users\User\.gradle\caches\8.9\transforms\ce1ad0caee5da4be3c6ec2c5869a0295\transformed\runtime-saveable-release\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.runtime:runtime-android:1.7.8] C:\Users\User\.gradle\caches\8.9\transforms\698311c8167c2195f54ef782dfe72723\transformed\runtime-release\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\User\.gradle\caches\8.9\transforms\945659c61dde9330729cc05718291c29\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\User\.gradle\caches\8.9\transforms\bf7e10f7ecfbe832d2bcbc0dc0c94c47\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [br.com.devsrsouza.compose.icons:font-awesome-android:1.1.1] C:\Users\User\.gradle\caches\8.9\transforms\b94239c1e5308aaf378f5ffab989b4a4\transformed\font-awesome-release\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\06f383ea4df034c346a797663bb0a874\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\User\.gradle\caches\8.9\transforms\58a9fecccf922180e8d3de83f065a128\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\d4a31ae539df19386cecaa531b84cbcd\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -171,7 +174,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Us
 		ADDED from C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:8:9-65
 	android:name
 		ADDED from C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:6:9-38
-activity#com.ospaltic.mydebts.MainActivity
+activity#com.st11.mydebts.MainActivity
 ADDED from C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:16:9-26:20
 	android:label
 		ADDED from C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:19:13-45
@@ -363,6 +366,10 @@ MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\User\.gradle\caches\8.9\
 MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\User\.gradle\caches\8.9\transforms\4382c8feb2797514d4fabdee446f963c\transformed\room-runtime-2.6.1\AndroidManifest.xml:21:5-44
 MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\User\.gradle\caches\8.9\transforms\46f87306dfced88a89320516b3066288\transformed\room-ktx-2.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.room:room-ktx:2.6.1] C:\Users\User\.gradle\caches\8.9\transforms\46f87306dfced88a89320516b3066288\transformed\room-ktx-2.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\96ab97357b1467885e97216c2453e90b\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore-preferences:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\96ab97357b1467885e97216c2453e90b\transformed\datastore-preferences-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\32afeff501d33dd1f1b4642ec9cb42f2\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.datastore:datastore:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\32afeff501d33dd1f1b4642ec9cb42f2\transformed\datastore-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.8] C:\Users\User\.gradle\caches\8.9\transforms\ce1ad0caee5da4be3c6ec2c5869a0295\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-saveable-android:1.7.8] C:\Users\User\.gradle\caches\8.9\transforms\ce1ad0caee5da4be3c6ec2c5869a0295\transformed\runtime-saveable-release\AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.runtime:runtime-android:1.7.8] C:\Users\User\.gradle\caches\8.9\transforms\698311c8167c2195f54ef782dfe72723\transformed\runtime-release\AndroidManifest.xml:5:5-44
@@ -371,6 +378,8 @@ MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\User\.gradle\cache
 MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\User\.gradle\caches\8.9\transforms\945659c61dde9330729cc05718291c29\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\User\.gradle\caches\8.9\transforms\bf7e10f7ecfbe832d2bcbc0dc0c94c47\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\User\.gradle\caches\8.9\transforms\bf7e10f7ecfbe832d2bcbc0dc0c94c47\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [br.com.devsrsouza.compose.icons:font-awesome-android:1.1.1] C:\Users\User\.gradle\caches\8.9\transforms\b94239c1e5308aaf378f5ffab989b4a4\transformed\font-awesome-release\AndroidManifest.xml:5:5-44
+MERGED from [br.com.devsrsouza.compose.icons:font-awesome-android:1.1.1] C:\Users\User\.gradle\caches\8.9\transforms\b94239c1e5308aaf378f5ffab989b4a4\transformed\font-awesome-release\AndroidManifest.xml:5:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\06f383ea4df034c346a797663bb0a874\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\User\.gradle\caches\8.9\transforms\06f383ea4df034c346a797663bb0a874\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\User\.gradle\caches\8.9\transforms\58a9fecccf922180e8d3de83f065a128\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
@@ -457,7 +466,7 @@ ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transfor
 		ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
-permission#com.ospaltic.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+permission#com.st11.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
 		ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
@@ -467,7 +476,7 @@ uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
-uses-permission#com.ospaltic.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission#com.st11.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:26:22-94

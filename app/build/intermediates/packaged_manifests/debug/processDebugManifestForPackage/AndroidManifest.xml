@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ospaltic.mydebts"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="com.st11.mydebts"
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="26"
@@ -11,13 +11,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <permission
-        android:name="com.ospaltic.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.st11.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.ospaltic.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.st11.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
-        android:name="com.ospaltic.mydebts.MyApplication"
+        android:name="com.st11.mydebts.MyApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -31,7 +31,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.MyDebts" >
         <activity
-            android:name="com.ospaltic.mydebts.MainActivity"
+            android:name="com.st11.mydebts.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MyDebts" >
@@ -47,7 +47,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.ospaltic.mydebts.androidx-startup"
+            android:authorities="com.st11.mydebts.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"

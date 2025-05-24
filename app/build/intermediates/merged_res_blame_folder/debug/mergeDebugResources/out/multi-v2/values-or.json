@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ospaltic.mydebts.app-mergeDebugResources-76:/values-or/values-or.xml",
+            "outputFile": "com.st11.mydebts.app-mergeDebugResources-78:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "C:\\Users\\User\\.gradle\\caches\\8.9\\transforms\\b66c458babbeb222db2fdc159b248bb8\\transformed\\material3-release\\res\\values-or\\values-or.xml",

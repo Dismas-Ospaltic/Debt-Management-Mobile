@@ -1,178 +1,178 @@
 [
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_burden.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\burden.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_user.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/user.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_money.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_money.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xxhdpi\\ic_launcher_foreground.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_record03.jpg.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/record03.jpg"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_record03.jpg.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\record03.jpg"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_add_white.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/add_white.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_clipboard.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_clipboard.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_burden.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/burden.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_clipboard.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_clipboard.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_arrow_back_darck.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_arrow_back_darck.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_arrow_back_darck.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_arrow_back_darck.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_debthand.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/debthand.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_up_arrows.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\up_arrows.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_search.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_search.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xhdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xhdpi\\ic_launcher_foreground.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/xml_data_extraction_rules.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "com.ospaltic.mydebts.app-debug-78:/drawable_ic_setting.xml.flat",
-        "source": "com.ospaltic.mydebts.app-main-80:/drawable/ic_setting.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_up_arrows.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/up_arrows.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-mdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-mdpi\\ic_launcher_foreground.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-hdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-hdpi\\ic_launcher_foreground.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_debtdue.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/debtdue.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_debthand.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\debthand.png"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_debtdue.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\debtdue.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_baseline_add_home_24.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/baseline_add_home_24.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_record01.jpg.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/record01.jpg"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/xml_backup_rules.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/xml/backup_rules.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_record02.jpg.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\record02.jpg"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-hdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-mdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\xml\\backup_rules.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_analytics.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_analytics.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_user.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\user.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_debtdash.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\debtdash.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_contract.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/contract.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_contract.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\contract.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_record02.jpg.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/record02.jpg"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_debt.png.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\debt.png"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_calendar_icon.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/calendar_icon.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_launcher_background.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_calendar_icon.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\calendar_icon.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_search.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_search.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_arror_right_gray.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_arror_right_gray.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_record04.jpg.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/record04.jpg"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_home.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_home.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_record04.jpg.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\record04.jpg"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_baseline_add_home_24.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\baseline_add_home_24.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_record01.jpg.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\record01.jpg"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_home.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_home.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_arror_right_gray.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_arror_right_gray.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_setting.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_setting.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_debtdash.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/debtdash.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\xml\\data_extraction_rules.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_money.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_money.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_add_white.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\add_white.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/drawable_debt.png.flat",
+        "source": "com.st11.mydebts.app-main-82:/drawable/debt.png"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\drawable_ic_analytics.xml.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\drawable\\ic_analytics.xml"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-debug-78:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
-        "source": "C:\\Users\\User\\.gradle\\daemon\\8.9\\com.ospaltic.mydebts.app-main-80:\\mipmap-xxxhdpi\\ic_launcher_foreground.webp"
+        "merged": "com.st11.mydebts.app-debug-80:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.st11.mydebts.app-main-82:/mipmap-xxxhdpi/ic_launcher_round.webp"
     }
 ]

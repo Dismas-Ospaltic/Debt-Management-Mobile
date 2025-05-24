@@ -6,15 +6,15 @@ plugins {
 }
 
 android {
-    namespace = "com.ospaltic.mydebts"
+    namespace = "com.st11.mydebts"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.ospaltic.mydebts"
+        applicationId = "com.st11.mydebts"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -91,6 +91,13 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.7.8") // Use latest version
 
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.2-alpha")
+
+
+    // DataStore for storing preferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //font Awesome Icons
+    implementation("br.com.devsrsouza.compose.icons:font-awesome:1.1.1")
 
 
 }

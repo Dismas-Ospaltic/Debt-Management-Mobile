@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.ospaltic.mydebts"
-4    android:versionCode="1"
-5    android:versionName="1.0" >
+3    package="com.st11.mydebts"
+4    android:versionCode="2"
+5    android:versionName="1.1" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="26"
@@ -14,18 +14,18 @@
 12
 13    <permission
 13-->[androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
-14        android:name="com.ospaltic.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+14        android:name="com.st11.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 14-->[androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
 15        android:protectionLevel="signature" />
 15-->[androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
 16
-17    <uses-permission android:name="com.ospaltic.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+17    <uses-permission android:name="com.st11.mydebts.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 17-->[androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 17-->[androidx.core:core:1.15.0] C:\Users\User\.gradle\caches\8.9\transforms\d8db442ca791a95004c1b28ba2790aa9\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 18
 19    <application
 19-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:5:5-27:19
-20        android:name="com.ospaltic.mydebts.MyApplication"
+20        android:name="com.st11.mydebts.MyApplication"
 20-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:6:9-38
 21        android:allowBackup="true"
 21-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:7:9-35
@@ -50,7 +50,7 @@
 32-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:14:9-45
 33        <activity
 33-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:16:9-26:20
-34            android:name="com.ospaltic.mydebts.MainActivity"
+34            android:name="com.st11.mydebts.MainActivity"
 34-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:17:13-41
 35            android:exported="true"
 35-->C:\Users\User\AndroidStudioProjects\MyDebts\app\src\main\AndroidManifest.xml:18:13-36
@@ -80,7 +80,7 @@
 48-->[androidx.emoji2:emoji2:1.3.0] C:\Users\User\.gradle\caches\8.9\transforms\5bfb58548edf94211755294b8a7d83a6\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
 49            android:name="androidx.startup.InitializationProvider"
 49-->[androidx.emoji2:emoji2:1.3.0] C:\Users\User\.gradle\caches\8.9\transforms\5bfb58548edf94211755294b8a7d83a6\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-50            android:authorities="com.ospaltic.mydebts.androidx-startup"
+50            android:authorities="com.st11.mydebts.androidx-startup"
 50-->[androidx.emoji2:emoji2:1.3.0] C:\Users\User\.gradle\caches\8.9\transforms\5bfb58548edf94211755294b8a7d83a6\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
 51            android:exported="false" >
 51-->[androidx.emoji2:emoji2:1.3.0] C:\Users\User\.gradle\caches\8.9\transforms\5bfb58548edf94211755294b8a7d83a6\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
