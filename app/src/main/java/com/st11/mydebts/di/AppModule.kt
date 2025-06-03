@@ -8,6 +8,8 @@ import com.st11.mydebts.repository.PeopleRepository
 import com.st11.mydebts.viewmodel.CurrencyViewModel
 import com.st11.mydebts.viewmodel.DebtPayViewModel
 import com.st11.mydebts.viewmodel.DebtViewModel
+import com.st11.mydebts.viewmodel.OnboardingViewModel
+import com.st11.mydebts.data.datastore.OnboardingPreferencesManager
 import com.st11.mydebts.viewmodel.PeopleViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -19,6 +21,11 @@ val appModule = module {
 //    // ViewModels
 //    viewModel { HomeViewModel(get()) }
 
+    // Define ViewModel injection
+    viewModel { OnboardingViewModel(get()) }
+
+    // Define PreferencesManager injection
+    single { OnboardingPreferencesManager(get()) }
 
     single { AppDatabase.getDatabase(get()).peopleDao() }
     single { PeopleRepository(get()) }
@@ -28,7 +35,13 @@ val appModule = module {
 
     single { AppDatabase.getDatabase(get()).debtDao() }
     single { DebtRepository(get()) }
-    viewModel {  DebtViewModel(get()) }
+//    viewModel {  DebtViewModel(get()) }
+    viewModel {
+        DebtViewModel(
+            debtRepository = get(),
+            peopleRepository = get()
+        )
+    }
 
 
     viewModel { DebtPayViewModel(get()) }

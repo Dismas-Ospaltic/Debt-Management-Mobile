@@ -4,14 +4,24 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.st11.mydebts.model.DebtEntity
+import com.st11.mydebts.model.RecentDebt
 import com.st11.mydebts.repository.DebtRepository
+import com.st11.mydebts.repository.PeopleRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
-class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
+class DebtViewModel(private val debtRepository: DebtRepository,
+                    private val peopleRepository: PeopleRepository) : ViewModel() {
 
     // Holds the list of debts for a specific user
     private val _debts = MutableStateFlow<List<DebtEntity>>(emptyList())
@@ -23,6 +33,10 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
 
     private val _debtsId = MutableStateFlow<List<String>>(emptyList())
     val debtsId: StateFlow<List<String>> = _debtsId
+
+    // Holds the list of recent debts
+    private val _recentDebts = MutableStateFlow<List<DebtEntity>>(emptyList())
+    val recentDebts: StateFlow<List<DebtEntity>> = _recentDebts
 
 
 
@@ -64,6 +78,50 @@ class DebtViewModel(private val debtRepository: DebtRepository) : ViewModel() {
 //            }
 //        }
 //    }
+
+
+//   fun getAllRecentDebt(){
+//        viewModelScope.launch {
+
+//            debtRepository.getAllRecentDebt().collectLatest { debtList ->
+//                _recentDebts.value = debtList
+
+//            }
+//        }
+//   }
+
+    private val _isRecentLoading = MutableStateFlow(true)
+    val isRecentLoading: StateFlow<Boolean> = _isRecentLoading
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun getRecentDebtList(): Flow<List<RecentDebt>> =
+        debtRepository.getAllRecentDebt().flatMapLatest { debts ->
+            flow {
+                _isRecentLoading.value = true // ✅ side-effect now inside flow block
+
+                delay(2000) // optional shimmer delay, now inside flow
+
+                val result = coroutineScope {
+                    debts.map { debt ->
+                        async {
+                            val person = peopleRepository.getPersonById(debt.uid)
+                            person?.let {
+                                RecentDebt(
+                                    firstName = it.firstName,
+                                    lastName = it.lastName,
+                                    phone = it.phone,
+                                    amount = debt.amount,
+                                    dueDate = debt.dueDate
+                                )
+                            }
+                        }
+                    }.awaitAll().filterNotNull()
+                }
+
+                emit(result)
+                _isRecentLoading.value = false // ✅ set loading to false after emit
+            }
+        }
 
 
 

@@ -50,7 +50,9 @@ import com.st11.mydebts.utils.ShimmerBox
 import com.st11.mydebts.viewmodel.CurrencyViewModel
 import com.st11.mydebts.viewmodel.DebtViewModel
 import com.st11.mydebts.viewmodel.PeopleViewModel
+import compose.icons.fontawesomeicons.solid.Clipboard
 import compose.icons.fontawesomeicons.solid.DollarSign
+import compose.icons.fontawesomeicons.solid.FileExcel
 import compose.icons.fontawesomeicons.solid.Inbox
 import compose.icons.fontawesomeicons.solid.PenSquare
 import compose.icons.fontawesomeicons.solid.PlusCircle
@@ -81,6 +83,8 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
     val isLoading by debtViewModel.isLoading.collectAsState()
     val isPersonDetailsLoading by peopleViewModel.isPersonDetailsLoading.collectAsState()
 
+
+
     LaunchedEffect(Unit) {
         if (itemId != null) {
             debtViewModel.getAllDebts(userId = itemId.toString())
@@ -104,6 +108,7 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
     var showAddDebtDialog by remember { mutableStateOf(false) } // State to control popup visibility
     var showEditDialog by remember{ mutableStateOf(false) }
 
+
     val paymentItems by remember {
         derivedStateOf {
             debts.map { debt ->
@@ -122,6 +127,9 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
             }
         }
     }
+
+
+
 
 
     val buttons = listOf(
@@ -511,16 +519,39 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
                             ) {
                                 if (filteredItems.isEmpty()) {
                                     // Centered text when no data is found
+//                                    Box(
+//                                        modifier = Modifier.fillMaxSize(),
+//                                        contentAlignment = Alignment.Center
+//                                    ) {
+//                                        Text(
+//                                            text = "No data found",
+//                                            color = Color.Gray,
+//                                            fontSize = 18.sp,
+//                                            fontWeight = FontWeight.Medium
+//                                        )
+//                                    }
+
                                     Box(
-                                        modifier = Modifier.fillMaxSize(),
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .heightIn(min = 200.dp), // Guarantees at least 200dp height
                                         contentAlignment = Alignment.Center
                                     ) {
-                                        Text(
-                                            text = "No data found",
-                                            color = Color.Gray,
-                                            fontSize = 18.sp,
-                                            fontWeight = FontWeight.Medium
-                                        )
+                                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                            Icon(
+                                                imageVector = FontAwesomeIcons.Solid.Clipboard,
+                                                contentDescription = "No data",
+                                                tint = Color.Gray,
+                                                modifier = Modifier.size(64.dp)
+                                            )
+                                            Spacer(modifier = Modifier.height(8.dp))
+                                            Text(
+                                                text = "No data found",
+                                                color = Color.Gray,
+                                                fontSize = 18.sp,
+                                                fontWeight = FontWeight.Medium
+                                            )
+                                        }
                                     }
                                 } else {
                                     filteredItems.forEach { item ->

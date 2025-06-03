@@ -13,8 +13,8 @@ android {
         applicationId = "com.st11.mydebts"
         minSdk = 26
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 5
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -100,4 +100,14 @@ dependencies {
     implementation("br.com.devsrsouza.compose.icons:font-awesome:1.1.1")
 
 
+    // Accompanist Pager (for horizontal paging)
+    implementation("com.google.accompanist:accompanist-pager:0.25.0")
+
+    // Accompanist Pager Indicators (for page indicators like dots)
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.25.0")
+
+    //lottie file animations
+    implementation("com.github.LottieFiles:dotlottie-android:0.5.0")
+
+    implementation("com.airbnb.android:lottie-compose:6.1.0")
 }

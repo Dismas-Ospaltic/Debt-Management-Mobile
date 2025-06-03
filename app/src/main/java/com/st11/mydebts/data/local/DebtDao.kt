@@ -33,6 +33,10 @@ interface DebtDao {
    fun getAllDebt(userId: String): Flow<List<DebtEntity>>
 
 
+    @Query("SELECT * FROM debt ORDER BY timestamp DESC LIMIT 10")
+    fun getAllRecentDebt(): Flow<List<DebtEntity>>
+
+
     @Query("SELECT * FROM debt WHERE debtId = :debtId LIMIT 1")
     suspend fun getDebtById(debtId: String): DebtEntity?
 

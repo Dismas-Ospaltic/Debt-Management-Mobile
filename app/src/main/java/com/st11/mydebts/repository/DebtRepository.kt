@@ -11,6 +11,10 @@ class DebtRepository(private val debtDao: DebtDao) {
 //    val allDebt: Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
   fun getAllDebt(userId: String): Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
 
+    fun getAllRecentDebt(): Flow<List<DebtEntity>> = debtDao.getAllRecentDebt()
+
+
+
     //    val allDebt: Flow<List<DebtEntity>> = debtDao.getAllDebt(userId)
 //    fun getAllDebtId(userId: String): Flow<List<DebtEntity>> = debtDao.getDebtIdByUid(userId)
     fun getAllDebtId(userId: String): Flow<List<String>> = debtDao.getDebtIdByUid(userId)

@@ -25,6 +25,10 @@ import com.st11.mydebts.R
 import com.st11.mydebts.navigation.Screen
 import com.st11.mydebts.utils.DynamicStatusBar
 import com.st11.mydebts.viewmodel.PeopleViewModel
+import compose.icons.FontAwesomeIcons
+import compose.icons.fontawesomeicons.Solid
+import compose.icons.fontawesomeicons.solid.Clipboard
+import compose.icons.fontawesomeicons.solid.FileExcel
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -119,16 +123,40 @@ fun HomeScreen(navController: NavController, peopleViewModel: PeopleViewModel = 
         // ✅ Show "No Data Available" if the list is empty initially or after filtering
         if (people.isEmpty()) {
             // No data available at the initial display
+//            Box(
+//                modifier = Modifier.fillMaxSize(),
+//                contentAlignment = Alignment.Center
+//            ) {
+//                Text(
+//                    text = "No Data Available",
+//                    fontSize = 18.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    color = Color.Gray
+//                )
+//            }
+
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)
+                    .heightIn(min = 200.dp), // Guarantees at least 200dp height
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "No Data Available",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Gray
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Icon(
+                        imageVector = FontAwesomeIcons.Solid.Clipboard,
+                        contentDescription = "No data",
+                        tint = Color.Gray,
+                        modifier = Modifier.size(64.dp)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "No data found, Click the plus Icon to add a customer/client",
+                        color = Color.Gray,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
             }
         } else if (filteredPeople.isEmpty()) {
             // No data available after search
@@ -152,7 +180,7 @@ fun HomeScreen(navController: NavController, peopleViewModel: PeopleViewModel = 
                     start = 0.dp,
                     top = 0.dp,
                     end = 0.dp,
-                    bottom = 100.dp // Add enough padding for bottom bar (adjust as needed)
+                    bottom = 150.dp // Add enough padding for bottom bar (adjust as needed)
                 )
             ) {
                 itemsIndexed(filteredPeople) { index, person ->

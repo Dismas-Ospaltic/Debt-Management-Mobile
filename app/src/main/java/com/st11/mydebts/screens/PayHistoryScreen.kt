@@ -6,10 +6,13 @@ import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -49,6 +52,10 @@ import com.st11.mydebts.screens.components.PayHistoryCard
 import com.st11.mydebts.utils.DynamicStatusBar
 import com.st11.mydebts.utils.ShimmerBox
 import com.st11.mydebts.viewmodel.DebtPayViewModel
+import compose.icons.FontAwesomeIcons
+import compose.icons.fontawesomeicons.Solid
+import compose.icons.fontawesomeicons.solid.Clipboard
+import compose.icons.fontawesomeicons.solid.FileExcel
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -267,16 +274,38 @@ fun PayHistoryScreen(
             } else {
             if (historyItems.isEmpty()) {
                 // Centered text when no data is available
+//                Box(
+//                    modifier = Modifier.fillMaxSize(),
+//                    contentAlignment = Alignment.Center
+//                ) {
+//                    Text(
+//                        text = "No data available",
+//                        color = Color.Gray,
+//                        fontSize = 18.sp,
+//                        fontWeight = FontWeight.Medium
+//                    )
+//                }
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(min = 200.dp), // Guarantees at least 200dp height
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = "No data available",
-                        color = Color.Gray,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Medium
-                    )
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        Icon(
+                            imageVector = FontAwesomeIcons.Solid.Clipboard,
+                            contentDescription = "No data",
+                            tint = Color.Gray,
+                            modifier = Modifier.size(64.dp)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "No data found",
+                            color = Color.Gray,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
                 }
             } else {
                 historyItems.forEach { item ->
