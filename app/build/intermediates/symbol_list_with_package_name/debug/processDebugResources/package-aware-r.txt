@@ -3060,6 +3060,7 @@ drawable ic_search
 drawable ic_search_black_24
 drawable ic_setting
 drawable indeterminate_static
+drawable longtermdebt
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3132,6 +3133,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable oblicationdebt
+drawable overdue
 drawable record01
 drawable record02
 drawable record03
@@ -3139,6 +3142,7 @@ drawable record04
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable toview
 drawable up_arrows
 drawable user
 id ALT

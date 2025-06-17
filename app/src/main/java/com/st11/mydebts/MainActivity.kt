@@ -8,7 +8,10 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -41,7 +44,7 @@ class MainActivity : ComponentActivity() {
             val currentRoute = navBackStackEntry?.destination?.route
 
             // Define screens where the bottom bar should be hidden
-            val hideBottomBarScreens = listOf(Screen.Splash.route,Screen.Detail.route, Screen.HistDetail.route, Screen.DebtHistDetail.route, Screen.DebtDetail.route, Screen.SelectCurrency.route,Screen.Onboarding.route)
+            val hideBottomBarScreens = listOf(Screen.Splash.route,Screen.Detail.route, Screen.HistDetail.route, Screen.DebtHistDetail.route, Screen.DebtDetail.route, Screen.SelectCurrency.route,Screen.Onboarding.route, Screen.CreditAuthor.route)
 
             Scaffold(
                 bottomBar = {
@@ -57,7 +60,11 @@ class MainActivity : ComponentActivity() {
                 }
 
             ) { paddingValues ->
-                AppNavHost(navController, Modifier.padding(paddingValues))
+                AppNavHost(
+                    navController,
+                    Modifier
+                        .padding(paddingValues)
+                        .windowInsetsPadding(WindowInsets.systemBars))
             }
         }
     }

@@ -10,6 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.st11.mydebts.screens.AccountScreen
+import com.st11.mydebts.screens.CreditAuthorScreen
 import com.st11.mydebts.screens.DebtDetailScreen
 import com.st11.mydebts.screens.DebtHistoryScreen
 import com.st11.mydebts.screens.HomeScreen
@@ -45,6 +46,8 @@ sealed class Screen(val route: String) {
     object Splash : Screen("splash")
 
     object Onboarding : Screen("onboarding")
+
+    object CreditAuthor : Screen("creditAuthor")
 
 }
 
@@ -138,7 +141,7 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
 
 
 
-
+         composable(Screen.CreditAuthor.route) { CreditAuthorScreen(navController) }
         composable(Screen.Setting.route) { SettingsScreen(navController) }
         composable(Screen.Account.route) { AccountScreen(navController) }
 //        composable(Screen.SelectCurrency.route) { SelectCurrencyScreen(navController) }
@@ -174,18 +177,34 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
 //        }
 
 
+//        composable(Screen.SelectCurrency.route) {
+//            LaunchedEffect(Unit) {
+//                if (isCurrencySet) {
+//                    navController.navigate(Screen.Home.route) {
+//                        popUpTo(Screen.SelectCurrency.route) { inclusive = true }
+//                    }
+//                }
+//            }
+//            if (!isCurrencySet) {
+//                SelectCurrencyScreen(navController)
+//            }
+//        }
+
+
         composable(Screen.SelectCurrency.route) {
-            LaunchedEffect(Unit) {
+            LaunchedEffect(isCurrencySet) {
                 if (isCurrencySet) {
                     navController.navigate(Screen.Home.route) {
                         popUpTo(Screen.SelectCurrency.route) { inclusive = true }
                     }
                 }
             }
+
             if (!isCurrencySet) {
                 SelectCurrencyScreen(navController)
             }
         }
+
 
 
 

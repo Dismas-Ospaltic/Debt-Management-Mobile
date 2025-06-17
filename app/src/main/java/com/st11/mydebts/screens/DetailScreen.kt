@@ -215,7 +215,7 @@ fun DetailScreen(navController: NavController, itemId: String?,peopleViewModel: 
                     .height(250.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.record02),
+                    painter = painterResource(id = R.drawable.oblicationdebt),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.matchParentSize()

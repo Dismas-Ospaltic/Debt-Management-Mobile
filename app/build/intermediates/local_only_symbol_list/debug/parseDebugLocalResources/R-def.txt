@@ -60,10 +60,14 @@ drawable ic_launcher_foreground
 drawable ic_money
 drawable ic_search
 drawable ic_setting
+drawable longtermdebt
+drawable oblicationdebt
+drawable overdue
 drawable record01
 drawable record02
 drawable record03
 drawable record04
+drawable toview
 drawable up_arrows
 drawable user
 mipmap ic_launcher

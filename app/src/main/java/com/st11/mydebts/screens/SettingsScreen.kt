@@ -7,13 +7,16 @@ import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -23,7 +26,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.st11.mydebts.R
+import com.st11.mydebts.navigation.Screen
 import com.st11.mydebts.utils.DynamicStatusBar
+import compose.icons.fontawesomeicons.Solid
+import compose.icons.fontawesomeicons.solid.InfoCircle
+import compose.icons.fontawesomeicons.solid.Lock
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,36 +80,34 @@ fun SettingsScreen(navController: NavController) {
 
 
 
-        Box(
+
+
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-            contentAlignment = Alignment.Center
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
-            Text(
-                text = "Privacy Policy",
-                modifier = Modifier
-                    .clickable {
-                        val intent = Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("https://st11-homy.github.io/MyDebts/privacy.html")
-                        )
-                        context.startActivity(intent)
-                    }
-                    .background(
-                        color = colorResource(id = R.color.white),
-                        shape = RoundedCornerShape(12.dp)
+            SettingCard(
+                icon = compose.icons.FontAwesomeIcons.Solid.Lock,
+                title = "Privacy Policy",
+                onClick = {
+                    val intent = Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://st11-homy.github.io/MyDebts/privacy.html")
                     )
-                    .border(
-                        width = 1.dp,
-                        color = colorResource(id = R.color.dark),
-                        shape = RoundedCornerShape(12.dp)
+                    context.startActivity(intent)
+                }
+            )
+
+
+            SettingCard(
+                icon = compose.icons.FontAwesomeIcons.Solid.InfoCircle,
+                title = "About",
+                onClick = {
+                    navController.navigate(
+                        Screen.CreditAuthor.route
                     )
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 12.dp),
-                color = colorResource(id = R.color.dark),
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium
+                }
             )
         }
 
@@ -117,4 +122,54 @@ fun SettingsScreen(navController: NavController) {
 @Composable
 fun SettingsScreenPreview() {
     SettingsScreen(navController = rememberNavController())
+}
+
+
+
+@Composable
+fun SettingCard(
+    icon: ImageVector,
+    title: String,
+    trailing: @Composable (() -> Unit)? = null,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                onClick = onClick,
+                indication = rememberRipple(bounded = true),
+                interactionSource = remember { MutableInteractionSource() }
+            )
+            .padding(vertical = 4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(12.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = colorResource(id = R.color.dark),
+                modifier = Modifier.size(24.dp)
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Text(
+                text = title,
+                fontSize = 18.sp,
+                modifier = Modifier.weight(1f)
+            )
+
+            if (trailing != null) {
+                trailing()
+            }
+        }
+    }
 }

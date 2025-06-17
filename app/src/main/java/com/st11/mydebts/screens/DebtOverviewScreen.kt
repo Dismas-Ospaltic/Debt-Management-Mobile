@@ -146,23 +146,16 @@ fun AccountScreen(navController: NavController) {
 
         // 🔹 Inline Grid Component
 
-        val items = listOf(
-            Triple(R.drawable.user, "People / Clients", totalPeople.toString()),
-            Triple(R.drawable.debtdash, "Total Debt", "${currency.userCurrency} ${totalUnpaidPeople.toString()}"),
-            Triple(R.drawable.burden, "Unpaid No.", totalNoPending.toString()),
-            Triple(R.drawable.debthand, "Paid No.", totalNoPaid.toString()),
-            Triple(R.drawable.debthand, "Partial No.", totalNoPartial.toString()),
-            Triple(R.drawable.debtdue, "Past Due No.", totalNoOverDue.toString())
-        )
+
 
 
         val cardData = listOf(
             CardInfo("Number of People/Clients", "$totalPeople", R.drawable.user),
             CardInfo("Total Debt", "${currency.userCurrency} $totalUnpaidPeople", R.drawable.debtdash),
-            CardInfo("Number of Unpaid", "$totalNoPending", R.drawable.burden),
+            CardInfo("Number of Unpaid", "$totalNoPending", R.drawable.longtermdebt),
             CardInfo("Number of Paid", "$totalNoPaid", R.drawable.debthand),
             CardInfo("Number of Partial Paid Debt", "$totalNoPartial", R.drawable.debthand),
-            CardInfo("Number of Past Due Debts", "$totalNoOverDue", R.drawable.debtdue)
+            CardInfo("Number of Past Due Debts", "$totalNoOverDue", R.drawable.overdue)
         )
 
         val configuration = LocalConfiguration.current
@@ -172,54 +165,7 @@ fun AccountScreen(navController: NavController) {
             else -> 4 // More columns for larger screens
         }
 
-//        LazyVerticalGrid(
-//            columns = GridCells.Fixed(columns),
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .heightIn(min = 300.dp) // Give a bounded height to prevent infinite height
-//                .padding(horizontal = 12.dp, vertical = 8.dp),
-//            userScrollEnabled = false // ❗ disable nested scroll
-//        ) {
-//            items(items) { (image, label, count) ->
-//                Card(
-//                    modifier = Modifier
-//                        .padding(8.dp)
-//                        .fillMaxWidth()
-//                        .aspectRatio(1f), // Ensures square shape
-//                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 6.dp),
-//                    shape = RoundedCornerShape(12.dp), // Slightly more rounded
-//                    colors = CardDefaults.cardColors(containerColor = Color.White) // ✅ White background
-//                ) {
-//                    Column(
-//                        modifier = Modifier
-//                            .fillMaxSize()
-//                            .padding(16.dp),
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        verticalArrangement = Arrangement.Center
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = image),
-//                            contentDescription = label,
-//                            modifier = Modifier
-//                                .size(64.dp)
-//                                .padding(bottom = 8.dp)
-//                        )
-//                        Text(
-//                            text = label,
-//                            fontSize = 16.sp,
-//                            fontWeight = FontWeight.Bold,
-//                            color = Color.Black
-//                        )
-//                        Text(
-//                            text = count.toString(),
-//                            fontSize = 12.sp,
-//                            fontWeight = FontWeight.Bold,
-//                            color = Color.Black
-//                        )
-//                    }
-//                }
-//            }
-//        }
+
 
 
         LazyRow(
@@ -277,79 +223,90 @@ fun AccountScreen(navController: NavController) {
             }
         }
 
-        Text(text = "Recent Debts",
-            color = colorResource(id = R.color.dark),
-            fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                .padding(20.dp)
-        )
 
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(4.dp)
-                .defaultMinSize(minHeight = 200.dp) // Ensures a minimum height of 200dp
-                .clip(RoundedCornerShape(12.dp))
-                .background(colorResource(id = R.color.white)),
+                .height(300.dp)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
+                .background(Color.White.copy(alpha = 0.85f), RoundedCornerShape(12.dp))
+//                                .background(Color(0xFFF5F5F5))
         ) {
+            Column {
+                Text(
+                    text = "Recent Debts",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                if(isRecentLoading){
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(horizontal = 12.dp, vertical = 8.dp)
+                    ) {
+                        repeat(6) {
+                            ShimmerBox(
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .fillMaxWidth()
+                                    .height(100.dp) // Set a fixed height or use another layout
+                            )
+                        }
+                    }
+                }else {
 
-
-            if(isRecentLoading){
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 12.dp, vertical = 8.dp)
-                ) {
-                    repeat(6) {
-                        ShimmerBox(
+                    if (recentDebtsAll.isEmpty()) {
+                        Box(
                             modifier = Modifier
-                                .padding(8.dp)
                                 .fillMaxWidth()
-                                .height(100.dp) // Set a fixed height or use another layout
-                        )
-                    }
-                }
-            }else {
-
-            if (recentDebtsAll.isEmpty()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .heightIn(min = 200.dp), // Guarantees at least 200dp height
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(
-                            imageVector = FontAwesomeIcons.Solid.Clipboard,
-                            contentDescription = "No data",
-                            tint = Color.Gray,
-                            modifier = Modifier.size(64.dp)
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "No data found",
-                            color = Color.Gray,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    }
-                }
-            } else {
+                                .heightIn(min = 200.dp), // Guarantees at least 200dp height
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Icon(
+                                    imageVector = FontAwesomeIcons.Solid.Clipboard,
+                                    contentDescription = "No data",
+                                    tint = Color.Gray,
+                                    modifier = Modifier.size(64.dp)
+                                )
+                                Spacer(modifier = Modifier.height(8.dp))
+                                Text(
+                                    text = "No data found",
+                                    color = Color.Gray,
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Medium
+                                )
+                            }
+                        }
+                    } else {
 //                for (item in recentDebts) {
 //                    RecentDebtBox(
 //                      navController = navController
 //                    )
 //                }
-                for (item in recentDebtsAll) {
-                    RecentDebtBox(
-                        navController = navController,
-                        recentDebt = item
-                    )
+                        for (item in recentDebtsAll) {
+                            RecentDebtBox(
+                                navController = navController,
+                                recentDebt = item
+                            )
+                        }
+
+                    }
+
+
+
+
+
                 }
 
             }
+                    
         }
-        }
+
 
     }
 }

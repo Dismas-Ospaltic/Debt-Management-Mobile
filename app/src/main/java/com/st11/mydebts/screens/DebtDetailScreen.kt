@@ -124,7 +124,7 @@ fun DebtDetailScreen(navController: NavController, itemId: String?) {
                     .background(colorResource(id = R.color.dark))
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.record04),
+                    painter = painterResource(id = R.drawable.toview),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.matchParentSize().fillMaxSize()
