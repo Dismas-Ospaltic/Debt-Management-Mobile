@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+#path to keystone
+/myassets

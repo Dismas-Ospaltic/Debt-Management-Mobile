@@ -16,9 +16,9 @@ User can use the app to power their business by recording the debt in the app.
 this is so convenient because user collects info of the customers the give goods on credit
 
 ## App's  screenshots
-![Add Note Page](AppScreenshot/Screenshot_20250411-060512.jpg) 
-![Add Note Page](AppScreenshot/Screenshot_20250411-060516.jpg)
-![Add Note Page](AppScreenshot/Screenshot_20250411-060457.jpg)
+![Add Note Page](AppScreenshot/Screenshot_20250615-140052.jpg) 
+![Add Note Page](AppScreenshot/Screenshot_20250615-140043.jpg)
+![Add Note Page](AppScreenshot/cash.jpg)
 
 
 ## Contributing
